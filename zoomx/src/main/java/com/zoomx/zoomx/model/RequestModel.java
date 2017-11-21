@@ -11,12 +11,13 @@ public class RequestModel {
     private String method;
     private long startDate;
     private String url;
-    private ArrayList<String> headers;
-    private ArrayList<String> bodyHeaders;
-    private String body;
+    private ArrayList<HeaderViewModel> headers;
+    private ArrayList<HeaderViewModel> responseHeaders;
+    private String responseBody;
+    private String requestBody;
     private long tookTime;
     private long responseSizeInBytes;
-    private String status;
+    private int code;
     private String title;
 
 
@@ -36,12 +37,12 @@ public class RequestModel {
         this.startDate = startDate;
     }
 
-    public ArrayList<String> getBodyHeaders() {
-        return bodyHeaders;
+    public ArrayList<HeaderViewModel> getResponseHeaders() {
+        return responseHeaders;
     }
 
-    public void setBodyHeaders(ArrayList<String> bodyHeaders) {
-        this.bodyHeaders = bodyHeaders;
+    public void setResponseHeaders(ArrayList<HeaderViewModel> responseHeaders) {
+        this.responseHeaders = responseHeaders;
     }
 
     public long getTookTime() {
@@ -60,12 +61,12 @@ public class RequestModel {
         this.responseSizeInBytes = responseSizeInBytes;
     }
 
-    public String getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getTitle() {
@@ -84,19 +85,27 @@ public class RequestModel {
         this.url = url;
     }
 
-    public ArrayList<String> getHeaders() {
+    public ArrayList<HeaderViewModel> getHeaders() {
         return headers;
     }
 
-    public void setHeaders(ArrayList<String> headers) {
+    public void setHeaders(ArrayList<HeaderViewModel> headers) {
         this.headers = headers;
     }
 
-    public String getBody() {
-        return body;
+    public String getResponseBody() {
+        return responseBody;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setResponseBody(String responseBody) {
+        this.responseBody = responseBody;
+    }
+
+    public String getRequestBody() {
+        return requestBody;
+    }
+
+    public void setRequestBody(String requestBody) {
+        this.requestBody = requestBody;
     }
 }
