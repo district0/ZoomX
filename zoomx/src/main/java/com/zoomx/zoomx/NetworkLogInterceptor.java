@@ -1,7 +1,7 @@
 package com.zoomx.zoomx;
 
 import com.zoomx.zoomx.model.HeaderViewModel;
-import com.zoomx.zoomx.model.RequestModel;
+import com.zoomx.zoomx.model.RequestEntity;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -28,7 +28,7 @@ public class NetworkLogInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        RequestModel request = new RequestModel();
+        RequestEntity request = new RequestEntity();
 
         Request retrofitRequest = chain.request();
         RequestBody requestBody = retrofitRequest.body();
