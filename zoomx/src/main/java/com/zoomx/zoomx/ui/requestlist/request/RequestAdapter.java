@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zoomx.zoomx.R;
-import com.zoomx.zoomx.model.RequestModel;
+import com.zoomx.zoomx.model.RequestEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +18,10 @@ import java.util.List;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHolder> {
 
-    List<RequestModel> requestModelList = new ArrayList<>();
+    List<RequestEntity> RequestEntityList = new ArrayList<>();
 
-    public  RequestAdapter(List<RequestModel> requestModelList) {
-        this.requestModelList = requestModelList;
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView url, details;
-
-        public MyViewHolder(View view) {
-            super(view);
-            url = (TextView) view.findViewById(R.id.url);
-            details = (TextView) view.findViewById(R.id.details);
-        }
+    public RequestAdapter(List<RequestEntity> RequestEntityList) {
+        this.RequestEntityList = RequestEntityList;
     }
 
     @Override
@@ -44,13 +34,23 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RequestModel requestModel = requestModelList.get(position);
-        holder.url.setText(requestModel.getUrl());
-        holder.details.setText(requestModel.getCode() + " " + requestModel.getMethod() + " " + requestModel.getStartDate());
+        RequestEntity RequestEntity = RequestEntityList.get(position);
+        holder.url.setText(RequestEntity.getUrl());
+        holder.details.setText(RequestEntity.getCode() + " " + RequestEntity.getMethod() + " " + RequestEntity.getStartDate());
     }
 
     @Override
     public int getItemCount() {
-        return requestModelList.size();
+        return RequestEntityList.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView url, details;
+
+        public MyViewHolder(View view) {
+            super(view);
+            url = (TextView) view.findViewById(R.id.url);
+            details = (TextView) view.findViewById(R.id.details);
+        }
     }
 }
