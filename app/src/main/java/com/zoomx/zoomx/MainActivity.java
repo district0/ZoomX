@@ -1,6 +1,5 @@
 package com.zoomx.zoomx;
 
-import android.arch.lifecycle.LifecycleObserver;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
@@ -138,9 +137,6 @@ public class MainActivity extends AppCompatActivity {
         if (overLayImage != null && wm != null) {
             wm.removeView(overLayImage);
         }
-
-        getLifecycle().addObserver(new LifecycleObserver() {
-        });
         super.onDestroy();
     }
 

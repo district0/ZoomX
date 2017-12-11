@@ -18,10 +18,14 @@ import java.util.List;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHolder> {
 
-    List<RequestEntity> RequestEntityList = new ArrayList<>();
+    List<RequestEntity> requests = new ArrayList<>();
 
-    public RequestAdapter(List<RequestEntity> RequestEntityList) {
-        this.RequestEntityList = RequestEntityList;
+    public RequestAdapter() {
+    }
+
+    public void setRequestEntityList(List<RequestEntity> requestEntityList) {
+        this.requests = requestEntityList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -34,14 +38,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RequestEntity RequestEntity = RequestEntityList.get(position);
+        RequestEntity RequestEntity = requests.get(position);
         holder.url.setText(RequestEntity.getUrl());
         holder.details.setText(RequestEntity.getCode() + " " + RequestEntity.getMethod() + " " + RequestEntity.getStartDate());
     }
 
     @Override
     public int getItemCount() {
-        return RequestEntityList.size();
+        return requests.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

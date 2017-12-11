@@ -2,8 +2,10 @@ package com.zoomx.zoomx.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 
-import java.util.ArrayList;
+import com.zoomx.zoomx.db.converters.HeaderConverter;
+
 import java.util.Date;
 
 /**
@@ -23,8 +25,10 @@ public class RequestEntity {
     private long tookTime;
     private long responseSizeInBytes;
 
-    private ArrayList<HeaderViewModel> headers;
-    private ArrayList<HeaderViewModel> responseHeaders;
+    @TypeConverters(HeaderConverter.class)
+    private HeaderViewModel rquestHeaders;
+    @TypeConverters(HeaderConverter.class)
+    private HeaderViewModel responseHeaders;
 
     public int getId() {
         return id;
@@ -98,19 +102,19 @@ public class RequestEntity {
         this.responseSizeInBytes = responseSizeInBytes;
     }
 
-    public ArrayList<HeaderViewModel> getHeaders() {
-        return headers;
+    public HeaderViewModel getRquestHeaders() {
+        return rquestHeaders;
     }
 
-    public void setHeaders(ArrayList<HeaderViewModel> headers) {
-        this.headers = headers;
+    public void setRquestHeaders(HeaderViewModel rquestHeaders) {
+        this.rquestHeaders = rquestHeaders;
     }
 
-    public ArrayList<HeaderViewModel> getResponseHeaders() {
+    public HeaderViewModel getResponseHeaders() {
         return responseHeaders;
     }
 
-    public void setResponseHeaders(ArrayList<HeaderViewModel> responseHeaders) {
+    public void setResponseHeaders(HeaderViewModel responseHeaders) {
         this.responseHeaders = responseHeaders;
     }
 }

@@ -1,11 +1,12 @@
 package com.zoomx.zoomx;
 
+import com.zoomx.zoomx.manager.ZoomX;
 import com.zoomx.zoomx.model.HeaderViewModel;
 import com.zoomx.zoomx.model.RequestEntity;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
@@ -38,7 +39,7 @@ public class NetworkLogInterceptor implements Interceptor {
         request.setMethod(retrofitRequest.method());
         request.setUrl(retrofitRequest.url().toString());
         request.setRequestBody(hasRequestBody ? requestBody.toString() : "");
-        request.setHeaders(getHeaders(retrofitRequest.headers()));
+        request.setRquestHeaders(getHeaders(retrofitRequest.headers()));
 
         long startNs = System.nanoTime();
         Response response = null;
@@ -48,7 +49,7 @@ public class NetworkLogInterceptor implements Interceptor {
             e.printStackTrace();
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
-        request.setStartDate(startNs);
+        request.setStartDate(new Date(startNs));
         request.setTookTime(tookMs);
         if (response != null) {
             request.setResponseHeaders(getHeaders(response.headers()));
@@ -56,21 +57,18 @@ public class NetworkLogInterceptor implements Interceptor {
             request.setResponseBody(responseBody(response));
         }
 
+        ZoomX.getRequestDao().insertRequest(request);
         return response;
     }
 
-    private ArrayList<HeaderViewModel> getHeaders(Headers headers) {
-        ArrayList<HeaderViewModel> responseViewHeaders = null;
+    private HeaderViewModel getHeaders(Headers headers) {
+        HeaderViewModel model = new HeaderViewModel();
         if (headers != null) {
-            responseViewHeaders = new ArrayList<>();
             for (int i = 0; i < headers.size(); i++) {
-                HeaderViewModel model = new HeaderViewModel();
-                model.setName(headers.name(i));
-                model.setHeader(headers.value(i));
-                responseViewHeaders.add(model);
+                model.addHeader(headers.name(i), headers.value(i));
             }
         }
-        return responseViewHeaders;
+        return model;
     }
 
     private String responseBody(Response response) throws IOException {

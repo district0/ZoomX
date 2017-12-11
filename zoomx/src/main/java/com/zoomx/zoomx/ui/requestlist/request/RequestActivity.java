@@ -1,5 +1,7 @@
 package com.zoomx.zoomx.ui.requestlist.request;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.viewmodel.RequestListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,25 +22,36 @@ import java.util.List;
 
 public class RequestActivity extends AppCompatActivity
 {
-    private List<RequestEntity> RequestEntityList = new ArrayList<>();
+    private List<RequestEntity> requestEntityList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
-
+    private RequestListViewModel viewModel;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_activity_layout);
 
-        RequestEntityList = prepareRequestData();
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        requestAdapter = new RequestAdapter(RequestEntityList);
+        recyclerView = findViewById(R.id.recycler_view);
+        requestAdapter = new RequestAdapter();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(requestAdapter);
+
+        setRequestData();
     }
 
-    public List<RequestEntity> prepareRequestData() {
+    public void setRequestData() {
+        viewModel = ViewModelProviders.of(this).get(RequestListViewModel.class);
+        viewModel.getRequests().observe(this, new Observer<List<RequestEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<RequestEntity> requestEntities) {
+                requestAdapter.setRequestEntityList(requestEntityList);
+            }
+        });
+    }
+
+    public void setDummyRequestData() {
         List<RequestEntity> RequestEntityList = new ArrayList<>();
         RequestEntity RequestEntity = new RequestEntity();
         RequestEntity RequestEntity2 = new RequestEntity();
@@ -57,7 +71,7 @@ public class RequestActivity extends AppCompatActivity
         RequestEntityList.add(RequestEntity2);
         RequestEntityList.add(RequestEntity3);
 
-        return RequestEntityList;
+        requestAdapter.setRequestEntityList(RequestEntityList);
     }
 }
 

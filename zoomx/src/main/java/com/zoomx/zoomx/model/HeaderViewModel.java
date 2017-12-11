@@ -1,30 +1,28 @@
 package com.zoomx.zoomx.model;
 
-import android.arch.persistence.room.Entity;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Ahmed Fathallah on 11/20/2017.
  */
-@Entity(tableName = "Headers")
 public class HeaderViewModel {
 
+    private Map<String, String> headersMap;
 
-    private String key;
-    private String value;
-
-    public String getKey() {
-        return key;
+    public HeaderViewModel() {
+        this.headersMap = new HashMap<>();
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public HeaderViewModel(Map<String, String> headersMap) {
+        this.headersMap = headersMap;
     }
 
-    public String getValue() {
-        return value;
+    public void addHeader(String name, String value) {
+        headersMap.put(name, value);
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public Map<String, String> getHeadersMap() {
+        return headersMap;
     }
 }
