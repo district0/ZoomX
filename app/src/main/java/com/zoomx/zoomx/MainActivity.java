@@ -19,10 +19,15 @@ import com.zoomx.zoomx.retrofit.NetworkManager;
 import com.zoomx.zoomx.ui.requestlist.request.RequestActivity;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,20 +45,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void startUsersService() {
         NetworkManager networkManager = new NetworkManager();
-
         ApiService service = networkManager.service();
-        Call<List<User>> getUsersCall = service.getUsers(0, 1);
-        getUsersCall.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-            }
+        service.getUsers(0, 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .repeatWhen(new Function<Observable<?>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Observable<?> objectObservable) throws Exception {
+                        return objectObservable.delay(10, TimeUnit.SECONDS);
+                    }
+                })
+                .subscribe(new Observer<List<User>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    }
+
+                    @Override
+                    public void onNext(List<User> value) {
+                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     public void startOverlay() {
@@ -113,21 +135,19 @@ public class MainActivity extends AppCompatActivity {
         overLayImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this , RequestActivity.class);
+                Intent intent = new Intent(MainActivity.this, RequestActivity.class);
                 startActivity(intent);
             }
         });
 
         // Check if Android M or higher
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // Show alert dialog to the user saying a separate permission is needed
             // Launch the settings activity if the user prefers
             Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
             startActivity(myIntent);
             wm.addView(overLayImage, params);
-        }
-        else
-        {
+        } else {
             wm.addView(overLayImage, params);
         }
     }
