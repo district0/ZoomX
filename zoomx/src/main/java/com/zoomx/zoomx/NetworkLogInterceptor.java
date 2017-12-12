@@ -49,7 +49,7 @@ public class NetworkLogInterceptor implements Interceptor {
             e.printStackTrace();
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
-        request.setStartDate(new Date(startNs));
+        request.setStartDate(new Date(TimeUnit.NANOSECONDS.toMillis(startNs)));
         request.setTookTime(tookMs);
         if (response != null) {
             request.setResponseHeaders(getHeaders(response.headers()));

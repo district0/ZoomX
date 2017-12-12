@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.util.ColorUtils;
+import com.zoomx.zoomx.util.FormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +35,17 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.request_item_row, parent, false);
 
-            return new MyViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RequestEntity RequestEntity = requests.get(position);
-        holder.url.setText(RequestEntity.getUrl());
-        holder.details.setText(RequestEntity.getCode() + " " + RequestEntity.getMethod() + " " + RequestEntity.getStartDate());
+        RequestEntity requestEntity = requests.get(position);
+        holder.urlTextView.setText(requestEntity.getUrl());
+        holder.methodTypeTextView.setText(requestEntity.getMethod());
+        holder.codeTextView.setText(String.valueOf(requestEntity.getCode()));
+        holder.codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode()));
+        holder.startDateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(),FormatUtil.DATE_FORMAT));
     }
 
     @Override
@@ -49,12 +54,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView url, details;
+        TextView urlTextView, codeTextView, methodTypeTextView, startDateTextView;
 
         public MyViewHolder(View view) {
             super(view);
-            url = (TextView) view.findViewById(R.id.url);
-            details = (TextView) view.findViewById(R.id.details);
+            urlTextView = view.findViewById(R.id.url_tx);
+            codeTextView = view.findViewById(R.id.code_txt);
+            methodTypeTextView = view.findViewById(R.id.method_txt);
+            startDateTextView = view.findViewById(R.id.date_txt);
+
         }
     }
 }
