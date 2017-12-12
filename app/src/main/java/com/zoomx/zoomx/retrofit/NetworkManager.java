@@ -1,5 +1,6 @@
 package com.zoomx.zoomx.retrofit;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.zoomx.zoomx.NetworkLogInterceptor;
 
 import okhttp3.OkHttpClient;
@@ -27,6 +28,7 @@ public class NetworkManager {
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient.build())
                 .build();
     }
