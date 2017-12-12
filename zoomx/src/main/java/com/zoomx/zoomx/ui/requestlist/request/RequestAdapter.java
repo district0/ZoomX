@@ -33,7 +33,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.request_item_row, parent, false);
 
-        return new MyViewHolder(view);
+            return new MyViewHolder(view);
     }
 
     @Override

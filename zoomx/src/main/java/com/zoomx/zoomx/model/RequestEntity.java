@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Entity(tableName = "requests")
 public class RequestEntity {
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     private int id;
     private int code;
     private String method;
