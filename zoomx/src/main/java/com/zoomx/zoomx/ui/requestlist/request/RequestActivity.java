@@ -22,7 +22,6 @@ import java.util.List;
 
 public class RequestActivity extends AppCompatActivity
 {
-    private List<RequestEntity> requestEntityList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
@@ -46,7 +45,7 @@ public class RequestActivity extends AppCompatActivity
         viewModel.getRequests().observe(this, new Observer<List<RequestEntity>>() {
             @Override
             public void onChanged(@Nullable List<RequestEntity> requestEntities) {
-                requestAdapter.setRequestEntityList(requestEntityList);
+                requestAdapter.setRequestEntityList(requestEntities);
             }
         });
     }
