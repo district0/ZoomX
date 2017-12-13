@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.requestlist.request.RequestActivity"></activity>
+        <activity android:name=".view.request.RequestActivity"></activity>
     </application>
 
 </manifest>

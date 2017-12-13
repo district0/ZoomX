@@ -1,1 +1,14 @@
-<manifest package="com.zoomx.zoomx" />
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zoomx.zoomx">
+
+    <application>
+        <activity
+            android:name=".view.request.RequestActivity"
+            android:launchMode="singleInstance"></activity>
+        <activity
+            android:name=".view.requestdetails.RequestDetailsActivity"
+            android:launchMode="singleInstance"></activity>
+    </application>
+
+</manifest>

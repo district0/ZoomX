@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.zoomx.zoomx.model.User;
 import com.zoomx.zoomx.retrofit.ApiService;
 import com.zoomx.zoomx.retrofit.NetworkManager;
-import com.zoomx.zoomx.ui.requestlist.request.RequestActivity;
+import com.zoomx.zoomx.view.request.RequestActivity;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startOverlay() {
         overLayImage = new ImageView(this);
-        overLayImage.setImageResource(R.drawable.ic_launcher_background);
+        overLayImage.setImageResource(R.drawable.ic_zoom);
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 80,
                 80,

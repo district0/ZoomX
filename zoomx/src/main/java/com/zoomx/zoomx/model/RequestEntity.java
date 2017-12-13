@@ -6,6 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.zoomx.zoomx.db.converters.HeaderConverter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 
 @Entity(tableName = "requests")
-public class RequestEntity {
+public class RequestEntity implements Serializable {
     @PrimaryKey (autoGenerate = true)
     private int id;
     private int code;
