@@ -41,7 +41,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable RequestEntity requestEntity) {
                     Map<String,String> item = new HashMap<>();
-                    item.put("Method",requestEntity.getMethod());
+                    item.put(RequestActivity.REQUEST_ID,requestEntity.getMethod());
                     requestDetailsAdapter = new RequestDetailsAdapter(item);
                     recyclerView.setAdapter(requestDetailsAdapter);
                 }
