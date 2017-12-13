@@ -20,6 +20,9 @@ public interface RequestDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRequest(RequestEntity requestEntity);
 
-    @Query("SELECT * FROM requests")
+    @Query("SELECT * FROM requests ORDER BY startDate DESC")
     LiveData<List<RequestEntity>> loadRequests();
+
+    @Query("DELETE FROM requests")
+    int clearRequestsData();
 }

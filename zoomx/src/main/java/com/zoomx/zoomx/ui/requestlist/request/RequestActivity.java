@@ -8,23 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.viewmodel.RequestListViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Ibrahim AbdelGawad on 12/3/2017.
  */
 
-public class RequestActivity extends AppCompatActivity
-{
+public class RequestActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,27 +51,19 @@ public class RequestActivity extends AppCompatActivity
         });
     }
 
-    public void setDummyRequestData() {
-        List<RequestEntity> RequestEntityList = new ArrayList<>();
-        RequestEntity RequestEntity = new RequestEntity();
-        RequestEntity RequestEntity2 = new RequestEntity();
-        RequestEntity RequestEntity3 = new RequestEntity();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_request_list, menu);
+        return true;
+    }
 
-
-        RequestEntity.setUrl("www.google.com");
-        RequestEntity.setCode(200);
-
-        RequestEntity2.setUrl("www.google.com");
-        RequestEntity2.setCode(200);
-
-        RequestEntity3.setUrl("www.google.com");
-        RequestEntity3.setCode(200);
-
-        RequestEntityList.add(RequestEntity);
-        RequestEntityList.add(RequestEntity2);
-        RequestEntityList.add(RequestEntity3);
-
-        requestAdapter.setRequestEntityList(RequestEntityList);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_delete_requests) {
+            viewModel.clearRequestFromDB().execute();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

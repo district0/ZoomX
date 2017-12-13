@@ -7,7 +7,6 @@ import com.zoomx.zoomx.model.RequestEntity;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -41,16 +40,17 @@ public class NetworkLogInterceptor implements Interceptor {
         request.setRequestBody(hasRequestBody ? requestBody.toString() : "");
         request.setRquestHeaders(getHeaders(retrofitRequest.headers()));
 
-        long startNs = System.nanoTime();
+        long startDateInMs = System.currentTimeMillis();
         Response response = null;
         try {
             response = chain.proceed(retrofitRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
-        request.setStartDate(new Date(TimeUnit.NANOSECONDS.toMillis(startNs)));
-        request.setTookTime(tookMs);
+        long timeTookInMs = System.currentTimeMillis() - startDateInMs;
+        request.setStartDate(new Date(startDateInMs));
+        request.setTookTime(timeTookInMs);
+
         if (response != null) {
             request.setResponseHeaders(getHeaders(response.headers()));
             request.setCode(response.code());

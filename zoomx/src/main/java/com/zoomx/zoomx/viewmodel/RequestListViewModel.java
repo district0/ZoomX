@@ -2,6 +2,7 @@ package com.zoomx.zoomx.viewmodel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
+import android.os.AsyncTask;
 
 import com.zoomx.zoomx.manager.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
@@ -22,5 +23,16 @@ public class RequestListViewModel extends ViewModel {
 
     public LiveData<List<RequestEntity>> getRequests() {
         return mRequests;
+    }
+
+    public DbAsyncTask clearRequestFromDB() {
+        return new DbAsyncTask();
+    }
+
+    public static class DbAsyncTask extends AsyncTask<Void, Void, Integer> {
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return ZoomX.getRequestDao().clearRequestsData();
+        }
     }
 }
