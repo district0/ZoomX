@@ -20,7 +20,7 @@ import java.util.List;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHolder> {
 
-    List<RequestEntity> requests = new ArrayList<>();
+    private List<RequestEntity> requests = new ArrayList<>();
 
     public RequestAdapter() {
     }

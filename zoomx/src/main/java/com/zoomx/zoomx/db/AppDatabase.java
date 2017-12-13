@@ -23,8 +23,10 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public static AppDatabase get(Context context) {
-        if (database == null) {
-            database = buildDataBase(context);
+        synchronized (AppDatabase.class) {
+            if (database == null) {
+                database = buildDataBase(context);
+            }
         }
         return database;
     }

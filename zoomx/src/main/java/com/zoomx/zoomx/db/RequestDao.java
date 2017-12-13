@@ -22,4 +22,7 @@ public interface RequestDao {
 
     @Query("SELECT * FROM requests ORDER BY startDate DESC")
     LiveData<List<RequestEntity>> loadRequests();
+
+    @Query("DELETE FROM requests")
+    int clearRequestsData();
 }
