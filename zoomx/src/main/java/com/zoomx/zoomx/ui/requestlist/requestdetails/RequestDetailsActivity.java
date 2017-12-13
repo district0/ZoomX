@@ -1,10 +1,13 @@
 package com.zoomx.zoomx.ui.requestlist.requestdetails;
 
-/**
- * Created by Ibrahim AbdelGawad on 12/3/2017.
- */
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class RequestDetailsActivity
-{
+public class RequestDetailsActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_request_details);
+    }
 }
