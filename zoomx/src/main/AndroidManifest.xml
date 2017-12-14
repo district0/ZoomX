@@ -4,13 +4,13 @@
 
     <application>
         <activity
-            android:name=".view.request.RequestActivity"
+            android:name=".ui.request.RequestActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".view.requestdetails.RequestDetailsActivity"
+            android:name=".ui.requestdetails.RequestDetailsActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".view.response.ResponseActivity"
+            android:name=".ui.response.BodyActivity"
             android:launchMode="singleInstance"></activity>
     </application>
 

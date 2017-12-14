@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.view.request;
+package com.zoomx.zoomx.ui.request;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
-import com.zoomx.zoomx.view.requestdetails.RequestDetailsActivity;
+import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
 import com.zoomx.zoomx.viewmodel.RequestListViewModel;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.view.requestdetails;
+package com.zoomx.zoomx.ui.requestdetails;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;

@@ -7,4 +7,7 @@
     <string name="request_details_code">Code</string>
     <string name="request_details_url">URL</string>
     <string name="request_details_response">Response</string>
+    <string name="request_details_request">Request</string>
+    <string name="request_headers">Request Headers</string>
+    <string name="response_headers">Response Headers</string>
 </resources>

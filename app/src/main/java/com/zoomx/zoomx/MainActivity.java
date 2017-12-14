@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.zoomx.zoomx.model.User;
 import com.zoomx.zoomx.retrofit.ApiService;
 import com.zoomx.zoomx.retrofit.NetworkManager;
-import com.zoomx.zoomx.view.request.RequestActivity;
+import com.zoomx.zoomx.ui.request.RequestActivity;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

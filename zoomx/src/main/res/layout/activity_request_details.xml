@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="@string/request_details_method" />
 
         <TextView
@@ -27,6 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="GET" />
     </LinearLayout>
 
@@ -45,7 +46,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="@string/request_details_date" />
 
         <TextView
@@ -53,6 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Date" />
 
     </LinearLayout>
@@ -72,7 +74,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="@string/request_details_code" />
 
         <TextView
@@ -80,6 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Code" />
 
     </LinearLayout>
@@ -99,7 +102,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="@string/request_details_url" />
 
         <TextView
@@ -107,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
             android:text="URL" />
 
@@ -132,10 +135,38 @@
 
 
         <ImageView
-            android:id="@+id/request_details_arrow_img"
+            android:id="@+id/request_details_response_body_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_request_details_arrow" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/request_details_request_body_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_details_request" />
+
+        <ImageView
+            android:id="@+id/request_details_request_body_arrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
             android:src="@drawable/ic_request_details_arrow" />
 
     </RelativeLayout>
@@ -152,6 +183,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:dividerHeight="1dip"
+        android:nestedScrollingEnabled="false"
         android:scrollbars="vertical" />
 
 </LinearLayout>
