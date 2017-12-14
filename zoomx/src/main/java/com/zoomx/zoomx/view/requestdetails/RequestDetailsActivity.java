@@ -42,7 +42,6 @@ public class RequestDetailsActivity extends AppCompatActivity {
                     recyclerView.setAdapter(requestDetailsAdapter);
                 }
             });
-
         }
     }
 }
