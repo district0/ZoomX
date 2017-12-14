@@ -24,13 +24,13 @@
         android:weightSum="3">
 
         <TextView
-            android:id="@+id/code_txt"
+            android:id="@+id/details_code_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/method_txt"
+            android:id="@+id/details_method_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -1,6 +1,5 @@
 package com.zoomx.zoomx.view.request;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -20,12 +19,12 @@ public class RequestViewHolder extends RecyclerView.ViewHolder {
     public RequestViewHolder(View view) {
         super(view);
         urlTextView = view.findViewById(R.id.url_tx);
-        codeTextView = view.findViewById(R.id.code_txt);
-        methodTypeTextView = view.findViewById(R.id.method_txt);
+        codeTextView = view.findViewById(R.id.details_code_txt);
+        methodTypeTextView = view.findViewById(R.id.details_method_txt);
         startDateTextView = view.findViewById(R.id.date_txt);
     }
 
-    public void bind(final RequestEntity requestEntity, final OnRequestItemClickListener onRequestItemClickListener) {
+    public void bind(final RequestEntity requestEntity, final RequestAdapter.OnRequestItemClickListener onRequestItemClickListener) {
         if (requestEntity != null) {
             urlTextView.setText(requestEntity.getUrl());
             methodTypeTextView.setText(requestEntity.getMethod());

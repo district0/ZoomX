@@ -5,9 +5,12 @@
     <application>
         <activity
             android:name=".view.request.RequestActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".view.requestdetails.RequestDetailsActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".view.response.ResponseActivity"
             android:launchMode="singleInstance"></activity>
     </application>
 

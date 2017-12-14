@@ -48,4 +48,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
         return requests.size();
     }
 
+    public interface OnRequestItemClickListener {
+        void onItemClick(RequestEntity requestEntity);
+    }
 }

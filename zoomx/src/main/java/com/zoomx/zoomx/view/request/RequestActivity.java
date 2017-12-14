@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.view.requestdetails.RequestDetailsActivity;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Ibrahim AbdelGawad on 12/3/2017.
  */
 
-public class RequestActivity extends AppCompatActivity implements OnRequestItemClickListener {
+public class RequestActivity extends AppCompatActivity implements RequestAdapter.OnRequestItemClickListener {
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
