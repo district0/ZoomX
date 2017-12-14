@@ -16,10 +16,9 @@ import java.util.Map;
  */
 public class RequestDetailsAdapter extends RecyclerView.Adapter<RequestDetailsAdapter.MyRequestDetailsViewHolder> {
 
-     private Map<String,String> itemsMap;
+    private Map<String, String> itemsMap;
 
-    public RequestDetailsAdapter(Map<String,String> itemsMap)
-    {
+    public RequestDetailsAdapter(Map<String, String> itemsMap) {
         this.itemsMap = itemsMap;
     }
 
@@ -43,7 +42,7 @@ public class RequestDetailsAdapter extends RecyclerView.Adapter<RequestDetailsAd
 
     public class MyRequestDetailsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView keyTextView , valueTextView;
+        TextView keyTextView, valueTextView;
 
         public MyRequestDetailsViewHolder(View itemView) {
             super(itemView);

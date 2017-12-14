@@ -35,6 +35,4 @@ dependencies {
 
     implementation project(':zoomx')
     implementation "android.arch.lifecycle:extensions:1.0.0"
-    implementation 'com.ramotion.circlemenu:circle-menu:0.2.1'
-
 }

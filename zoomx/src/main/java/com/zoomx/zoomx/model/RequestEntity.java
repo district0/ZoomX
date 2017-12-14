@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 @Entity(tableName = "requests")
-public class RequestEntity implements Serializable {
+public class RequestEntity {
     @PrimaryKey (autoGenerate = true)
     private int id;
     private int code;

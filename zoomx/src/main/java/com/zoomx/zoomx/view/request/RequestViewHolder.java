@@ -15,35 +15,27 @@ import com.zoomx.zoomx.util.FormatUtil;
  */
 
 public class RequestViewHolder extends RecyclerView.ViewHolder {
-    private Context context;
     TextView urlTextView, codeTextView, methodTypeTextView, startDateTextView;
 
-
-    public RequestViewHolder(Context context , View view) {
+    public RequestViewHolder(View view) {
         super(view);
-
-        this.context = context;
         urlTextView = view.findViewById(R.id.url_tx);
         codeTextView = view.findViewById(R.id.code_txt);
         methodTypeTextView = view.findViewById(R.id.method_txt);
         startDateTextView = view.findViewById(R.id.date_txt);
     }
 
-    public void bind(final RequestEntity requestEntity , final OnRequestItemClickListener onRequestItemClickListener)
-    {
-        if (requestEntity != null)
-        {
+    public void bind(final RequestEntity requestEntity, final OnRequestItemClickListener onRequestItemClickListener) {
+        if (requestEntity != null) {
             urlTextView.setText(requestEntity.getUrl());
             methodTypeTextView.setText(requestEntity.getMethod());
             codeTextView.setText(String.valueOf(requestEntity.getCode()));
             codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode()));
-            startDateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(),FormatUtil.DATE_FORMAT));
-
+            startDateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(), FormatUtil.DATE_FORMAT));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (onRequestItemClickListener != null)
-                    {
+                    if (onRequestItemClickListener != null) {
                         onRequestItemClickListener.onItemClick(requestEntity);
                     }
                 }
