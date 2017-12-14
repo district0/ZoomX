@@ -1,10 +1,12 @@
 package com.zoomx.zoomx;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -141,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Check if Android M or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && ActivityCompat.checkSelfPermission(this, Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                != PackageManager.PERMISSION_GRANTED) {
             // Show alert dialog to the user saying a separate permission is needed
             // Launch the settings activity if the user prefers
             Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
