@@ -69,8 +69,8 @@ public class RequestDetailsActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         requestDetailsAdapter = new RequestDetailsAdapter(getHeadersKeyList(getHeaderMap(requestEntity))
                 , getHeadersValueList(getHeaderMap(requestEntity)));
-        recyclerView.setAdapter(requestDetailsAdapter);
 
+        recyclerView.setAdapter(requestDetailsAdapter);
         methodTextView.setText(requestEntity.getMethod());
         codeTextView.setText(requestEntity.getCode() + "");
         codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode(), this));
@@ -101,12 +101,18 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
     public Map<String, String> getHeaderMap(RequestEntity requestEntity) {
         Map<String, String> headersMap = new HashMap<>();
-        for (Map.Entry<String, String> entry : requestEntity.getResponseHeaders().getHeadersMap().entrySet()) {
-            headersMap.put(entry.getKey(), entry.getValue());
+        if (requestEntity.getResponseHeaders() != null && requestEntity.getResponseHeaders().getHeadersMap() != null) {
+            for (Map.Entry<String, String> entry : requestEntity.getResponseHeaders().getHeadersMap().entrySet()) {
+                headersMap.put(entry.getKey(), entry.getValue());
+            }
         }
-        for (Map.Entry<String, String> entry : requestEntity.getRquestHeaders().getHeadersMap().entrySet()) {
-            headersMap.put(entry.getKey(), entry.getValue());
+
+        if (requestEntity.getRquestHeaders() != null && requestEntity.getRquestHeaders().getHeadersMap() != null) {
+            for (Map.Entry<String, String> entry : requestEntity.getRquestHeaders().getHeadersMap().entrySet()) {
+                headersMap.put(entry.getKey(), entry.getValue());
+            }
         }
+
         return headersMap;
     }
 

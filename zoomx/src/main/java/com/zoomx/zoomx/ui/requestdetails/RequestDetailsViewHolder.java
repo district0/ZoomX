@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zoomx.zoomx.R;
@@ -14,11 +15,13 @@ import com.zoomx.zoomx.R;
 
 public class RequestDetailsViewHolder extends RecyclerView.ViewHolder {
     private TextView headerKeyTextView, headerValueTextView;
+    private LinearLayout headerLinearLayout;
 
     public RequestDetailsViewHolder(View itemView) {
         super(itemView);
         headerKeyTextView = itemView.findViewById(R.id.key_tx);
         headerValueTextView = itemView.findViewById(R.id.value_tx);
+        headerLinearLayout = itemView.findViewById(R.id.header_layout);
     }
 
     public void bind(String key, String value, int position) {
@@ -26,11 +29,9 @@ public class RequestDetailsViewHolder extends RecyclerView.ViewHolder {
         headerValueTextView.setText(value);
 
         if (position % 2 == 0) {
-            headerKeyTextView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.gray_100));
-            headerValueTextView.setBackgroundColor(Color.WHITE);
+            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.gray_100));
         } else {
-            headerKeyTextView.setBackgroundColor(Color.WHITE);
-            headerValueTextView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.gray_100));
+            headerLinearLayout.setBackgroundColor(Color.WHITE);
         }
     }
 }
