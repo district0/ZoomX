@@ -65,6 +65,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         requestDetailsAdapter = new RequestDetailsAdapter(getHeadersKeyList(getHeaderMap(requestEntity))
                 , getHeadersValueList(getHeaderMap(requestEntity)));
@@ -72,7 +73,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
         methodTextView.setText(requestEntity.getMethod());
         codeTextView.setText(requestEntity.getCode() + "");
-        codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode()));
+        codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode(), this));
         urlTextView.setText(requestEntity.getUrl());
         dateTextView.setText(requestEntity.getStartDate().toString());
 

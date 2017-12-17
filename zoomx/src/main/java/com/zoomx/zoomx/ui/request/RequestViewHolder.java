@@ -29,7 +29,7 @@ public class RequestViewHolder extends RecyclerView.ViewHolder {
             urlTextView.setText(requestEntity.getUrl());
             methodTypeTextView.setText(requestEntity.getMethod());
             codeTextView.setText(String.valueOf(requestEntity.getCode()));
-            codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode()));
+            codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode(), itemView.getContext()));
             startDateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(), FormatUtil.DATE_FORMAT));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
