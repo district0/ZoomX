@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
-    <android.support.design.widget.FloatingActionButton
+    <LinearLayout
+        android:id="@+id/menu_expanded_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/menu_dismiss_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_red_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_cancel"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/menu_settings_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_orange_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_settings"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/menu_features_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_green_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:src="@drawable/ic_view_list"
+            android:visibility="visible"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <ImageView
         android:id="@+id/menu_main_fab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@android:color/holo_red_light"
-        app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/menu_dismiss_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="5dp"
-        android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_compass"
-        tools:visibility="visible" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/menu_settings_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="5dp"
-        android:src="@android:drawable/ic_menu_myplaces"
-        android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_blue_light"
-        app:fabSize="mini"
-        tools:visibility="visible" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/menu_features_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="5dp"
-        android:src="@android:drawable/ic_menu_share"
-        android:visibility="invisible"
-        app:backgroundTint="@android:color/holo_orange_light"
-        app:fabSize="mini"
-        tools:visibility="visible" />
+        android:background="@drawable/menu_main_btn"
+        android:src="@android:drawable/ic_menu_add" />
 </FrameLayout>
