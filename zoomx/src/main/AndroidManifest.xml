@@ -1,1 +1,11 @@
-<manifest package="com.zoomx.zoomx" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zoomx.zoomx">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application>
+        <activity android:name=".ui.requestlist.request.RequestActivity" />
+
+        <service android:name=".ui.menu.ZoomxMenuService" />
+    </application>
+</manifest>
