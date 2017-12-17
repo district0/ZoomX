@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.requestlist.menu_view;
+package com.zoomx.zoomx.ui.menu;
 
 import android.app.Service;
 import android.content.Intent;
@@ -50,7 +50,6 @@ public class ZoomxMenuService extends Service implements View.OnTouchListener {
         } else {
             mWindowManager.addView(menuHeadLayout, menuParams);
         }
-
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.zoomx.zoomx.db.AppDatabase;
 import com.zoomx.zoomx.db.RequestDao;
-import com.zoomx.zoomx.ui.requestlist.menu_view.ZoomxMenuService;
+import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
 
 /**
  * Created by Ahmed Fathallah on 12/10/2017.
@@ -27,11 +27,8 @@ public final class ZoomX {
         requestDao = database.requestDao();
     }
 
-
     @NonNull
     public static RequestDao getRequestDao() {
         return requestDao;
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.requestlist.menu_view;
+package com.zoomx.zoomx.ui.menu;
 
 import android.content.Context;
 import android.content.Intent;
