@@ -4,7 +4,13 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application>
-        <activity android:name=".ui.requestlist.request.RequestActivity" />
+        <activity
+            android:name=".ui.requestlist.request.RequestActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
 
         <service android:name=".ui.menu.ZoomxMenuService" />
     </application>
