@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Zoomx</string>
     <string name="menu_action_delete_all">Delete All</string>
+    <string name="search">Search</string>
 </resources>
