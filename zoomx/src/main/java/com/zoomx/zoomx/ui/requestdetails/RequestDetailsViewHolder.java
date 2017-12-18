@@ -1,6 +1,7 @@
 package com.zoomx.zoomx.ui.requestdetails;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -28,8 +29,14 @@ public class RequestDetailsViewHolder extends RecyclerView.ViewHolder {
         headerKeyTextView.setText(key);
         headerValueTextView.setText(value);
 
-        if (position % 2 == 0) {
-            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.gray_100));
+        if (key.equalsIgnoreCase(itemView.getContext().getString(R.string.response_headers)) |
+                key.equalsIgnoreCase(itemView.getContext().getString(R.string.request_headers))) {
+            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_500));
+            headerKeyTextView.setAllCaps(true);
+            headerKeyTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        }
+        else if (position % 2 == 0) {
+            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_100));
         } else {
             headerLinearLayout.setBackgroundColor(Color.WHITE);
         }

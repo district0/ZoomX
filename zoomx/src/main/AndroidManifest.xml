@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zoomx.zoomx">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application>
         <activity
             android:name=".ui.request.RequestActivity"
@@ -11,7 +13,10 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".ui.response.BodyActivity"
-            android:launchMode="singleInstance"></activity>
+            android:launchMode="singleInstance"/>
+
+        <service android:name=".ui.menu.ZoomxMenuService" />
+
     </application>
 
 </manifest>

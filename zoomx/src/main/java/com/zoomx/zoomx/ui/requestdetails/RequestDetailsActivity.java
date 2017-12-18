@@ -102,12 +102,14 @@ public class RequestDetailsActivity extends AppCompatActivity {
     public Map<String, String> getHeaderMap(RequestEntity requestEntity) {
         Map<String, String> headersMap = new HashMap<>();
         if (requestEntity.getResponseHeaders() != null && requestEntity.getResponseHeaders().getHeadersMap() != null) {
+            headersMap.put(getString(R.string.response_headers), "");
             for (Map.Entry<String, String> entry : requestEntity.getResponseHeaders().getHeadersMap().entrySet()) {
                 headersMap.put(entry.getKey(), entry.getValue());
             }
         }
 
         if (requestEntity.getRquestHeaders() != null && requestEntity.getRquestHeaders().getHeadersMap() != null) {
+            headersMap.put(getString(R.string.request_headers), "");
             for (Map.Entry<String, String> entry : requestEntity.getRquestHeaders().getHeadersMap().entrySet()) {
                 headersMap.put(entry.getKey(), entry.getValue());
             }
