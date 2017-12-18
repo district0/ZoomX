@@ -31,14 +31,16 @@ public class RequestDetailsViewHolder extends RecyclerView.ViewHolder {
 
         if (key.equalsIgnoreCase(itemView.getContext().getString(R.string.response_headers)) |
                 key.equalsIgnoreCase(itemView.getContext().getString(R.string.request_headers))) {
-            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_500));
+            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_200));
             headerKeyTextView.setAllCaps(true);
             headerKeyTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        }
-        else if (position % 2 == 0) {
+            headerValueTextView.setVisibility(View.GONE);
+        } else if (position % 2 == 0) {
             headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_100));
+            headerValueTextView.setVisibility(View.VISIBLE);
         } else {
             headerLinearLayout.setBackgroundColor(Color.WHITE);
+            headerValueTextView.setVisibility(View.VISIBLE);
         }
     }
 }
