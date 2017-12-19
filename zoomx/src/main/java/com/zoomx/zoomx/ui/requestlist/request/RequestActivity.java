@@ -28,7 +28,7 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
-
+    private SearchView searchView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,8 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
         viewModel.getRequests().observe(this, new Observer<List<RequestEntity>>() {
             @Override
             public void onChanged(@Nullable List<RequestEntity> requestEntities) {
-                requestAdapter.setRequestEntityList(requestEntities);
+                if (searchView.isIconified())
+                    requestAdapter.setRequestEntityList(requestEntities);
             }
         });
     }
@@ -61,7 +62,7 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
+        searchView =
                 (SearchView) menu.findItem(R.id.action_search_requests).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -87,7 +88,8 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        requestAdapter.getFilter().filter(newText);
+        return true;
     }
 }
 
