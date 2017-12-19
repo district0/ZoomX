@@ -1,9 +1,10 @@
-package com.zoomx.zoomx.ui.requestlist.request;
+package com.zoomx.zoomx.ui.request;
 
 import android.app.SearchManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
 import com.zoomx.zoomx.viewmodel.RequestListViewModel;
 
 import java.util.List;
@@ -25,10 +27,13 @@ import java.util.List;
  */
 
 public class RequestActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class RequestActivity extends AppCompatActivity implements RequestAdapter.OnRequestItemClickListener {
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
     private SearchView searchView;
+    public static final String REQUEST_ID = "requestId";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,8 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
             public void onChanged(@Nullable List<RequestEntity> requestEntities) {
                 if (searchView.isIconified())
                     requestAdapter.setRequestEntityList(requestEntities);
+                requestAdapter.setRequestEntityList(requestEntities,
+                        RequestActivity.this);
             }
         });
     }
@@ -79,6 +86,13 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(RequestEntity requestEntity) {
+        Intent intent = new Intent(RequestActivity.this, RequestDetailsActivity.class);
+        intent.putExtra(REQUEST_ID, requestEntity.getId());
+        startActivity(intent);
     }
 
     @Override

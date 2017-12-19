@@ -1,9 +1,10 @@
 package com.zoomx.zoomx.util;
 
+import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 
-import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.R;
 
 /**
  * Created by Ibrahim AbdelGawad on 12/12/2017.
@@ -11,13 +12,13 @@ import com.zoomx.zoomx.model.RequestEntity;
 
 public class ColorUtils {
 
-    public static int getCodeColor(int code) {
+    public static int getCodeColor(int code, Context context) {
 
         int color = Color.BLACK;
 
         switch (code) {
             case 200:
-                color = Color.GREEN;
+                color = ContextCompat.getColor(context, R.color.green_500);
                 break;
 
             default:

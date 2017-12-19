@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zoomx.zoomx">
 
@@ -5,13 +6,21 @@
 
     <application>
         <activity
-            android:name=".ui.requestlist.request.RequestActivity"
-            android:windowSoftInputMode="stateHidden">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
+            android:name=".ui.request.RequestActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:launchMode="singleInstance" />
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+        <activity
+            android:name=".ui.requestdetails.RequestDetailsActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.response.BodyActivity"
+            android:launchMode="singleInstance"/>
 
         <service android:name=".ui.menu.ZoomxMenuService" />
+
     </application>
+
 </manifest>

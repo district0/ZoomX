@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.zoomx.zoomx.R;
-import com.zoomx.zoomx.ui.requestlist.request.RequestActivity;
+import com.zoomx.zoomx.ui.request.RequestActivity;
 
 /**
  * Created by Ahmed Fathallah on 12/13/2017.

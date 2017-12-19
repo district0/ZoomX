@@ -25,4 +25,8 @@ public interface RequestDao {
 
     @Query("DELETE FROM requests")
     int clearRequestsData();
+
+    @Query("SELECT * FROM requests WHERE id = :id")
+    LiveData<RequestEntity> getRequestById(int id);
+
 }
