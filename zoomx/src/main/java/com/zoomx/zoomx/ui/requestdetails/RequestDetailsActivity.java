@@ -25,13 +25,13 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestDetailsActivity extends AppCompatActivity {
+    public static final String BODY_URL_KEY = "url";
+    public static final String BODY_JSON_KEY = "body";
     private RecyclerView recyclerView;
     private RequestDetailsAdapter requestDetailsAdapter;
     private RequestDetailsViewModel viewModel;
     private TextView methodTextView, codeTextView, urlTextView, dateTextView;
     private ImageView responseArrowImageView, requestArrowImageView;
-    public static final String BODY_URL_KEY = "url";
-    public static final String BODY_JSON_KEY = "body";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

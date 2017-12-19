@@ -26,13 +26,12 @@ import java.util.List;
  * Created by Ibrahim AbdelGawad on 12/3/2017.
  */
 
-public class RequestActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-public class RequestActivity extends AppCompatActivity implements RequestAdapter.OnRequestItemClickListener {
+public class RequestActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, RequestAdapter.OnRequestItemClickListener {
+    public static final String REQUEST_ID = "requestId";
     private RecyclerView recyclerView;
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
     private SearchView searchView;
-    public static final String REQUEST_ID = "requestId";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,9 +54,8 @@ public class RequestActivity extends AppCompatActivity implements RequestAdapter
             @Override
             public void onChanged(@Nullable List<RequestEntity> requestEntities) {
                 if (searchView.isIconified())
-                    requestAdapter.setRequestEntityList(requestEntities);
-                requestAdapter.setRequestEntityList(requestEntities,
-                        RequestActivity.this);
+                    requestAdapter.setRequestEntityList(requestEntities,
+                            RequestActivity.this);
             }
         });
     }
