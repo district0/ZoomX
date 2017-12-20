@@ -7,13 +7,18 @@
     <application>
         <activity
             android:name=".ui.request.RequestActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="stateHidden" />
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
+
         <activity
             android:name=".ui.requestdetails.RequestDetailsActivity"
             android:launchMode="singleInstance" />
         <activity
             android:name=".ui.response.BodyActivity"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance" />
 
         <service android:name=".ui.menu.ZoomxMenuService" />
 

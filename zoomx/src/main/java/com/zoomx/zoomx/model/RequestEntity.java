@@ -6,7 +6,6 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.zoomx.zoomx.db.converters.HeaderConverter;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
