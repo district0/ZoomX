@@ -16,7 +16,6 @@ public class SettingsManager {
     private SharedPreferenceManager sharedPreferenceManager;
 
     private SettingsManager() {
-
     }
 
     public static SettingsManager get(Context context) {
