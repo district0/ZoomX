@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.ui.request.RequestActivity;
+import com.zoomx.zoomx.ui.settings.SettingActivity;
 
 /**
  * Created by Ahmed Fathallah on 12/13/2017.
@@ -50,12 +51,12 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             collapse();
             Toast.makeText(getContext(), "dismiss", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_settings_fab) {
-            Toast.makeText(getContext(), "settings", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.menu_features_fab) {
-            Intent intent = new Intent(getContext(), RequestActivity.class);
+            Intent intent = new Intent(getContext(), SettingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
-            Toast.makeText(getContext(), "features", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_features_fab) {
+            Intent intent = new Intent(getContext(), RequestActivity.class);
+            getContext().startActivity(intent);
         }
     }
 

@@ -22,6 +22,9 @@
 
         <service android:name=".ui.menu.ZoomxMenuService" />
 
+        <activity
+            android:name=".ui.settings.SettingActivity"
+            android:launchMode="singleInstance"></activity>
     </application>
 
 </manifest>

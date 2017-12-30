@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startUsersService() {
-        NetworkManager networkManager = new NetworkManager();
+        NetworkManager networkManager = new NetworkManager(getApplicationContext());
         ApiService service = networkManager.service();
         service.getUsers(0, 1)
                 .subscribeOn(Schedulers.io())

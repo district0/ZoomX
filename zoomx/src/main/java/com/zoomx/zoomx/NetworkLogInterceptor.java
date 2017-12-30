@@ -1,8 +1,11 @@
 package com.zoomx.zoomx;
 
+import android.content.Context;
+
 import com.zoomx.zoomx.manager.ZoomX;
 import com.zoomx.zoomx.model.HeaderViewModel;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.ui.settings.SettingsManager;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -25,11 +28,20 @@ import okio.BufferedSource;
 public class NetworkLogInterceptor implements Interceptor {
 
     private static final Charset UTF_8 = Charset.forName("utf-8");
+    private Context context;
+
+    public NetworkLogInterceptor(Context context) {
+        this.context = context;
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         RequestEntity request = new RequestEntity();
+        Response response = null;
 
+        if (!SettingsManager.get(context).isNetworkTrackingEnabled()) {
+            return chain.proceed(chain.request());
+        }
         Request retrofitRequest = chain.request();
         RequestBody requestBody = retrofitRequest.body();
 
@@ -41,7 +53,6 @@ public class NetworkLogInterceptor implements Interceptor {
         request.setRquestHeaders(getHeaders(retrofitRequest.headers()));
 
         long startDateInMs = System.currentTimeMillis();
-        Response response = null;
         try {
             response = chain.proceed(retrofitRequest);
         } catch (Exception e) {
@@ -58,6 +69,8 @@ public class NetworkLogInterceptor implements Interceptor {
         }
 
         ZoomX.getRequestDao().insertRequest(request);
+
+
         return response;
     }
 
