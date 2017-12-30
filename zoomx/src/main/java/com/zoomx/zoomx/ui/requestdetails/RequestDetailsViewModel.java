@@ -12,8 +12,7 @@ import com.zoomx.zoomx.model.RequestEntity;
 
 public class RequestDetailsViewModel extends ViewModel {
 
-    public LiveData<RequestEntity> getRequestById (int id)
-    {
+    public LiveData<RequestEntity> getRequestById(int id) {
         return ZoomX.getRequestDao().getRequestById(id);
     }
 }
