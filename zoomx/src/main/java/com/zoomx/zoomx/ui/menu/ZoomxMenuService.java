@@ -74,7 +74,7 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
 
     @Override
     public void OnMenuMoved(float dx, float dy) {
-        menuParams.x = (int) (menuParams.x + dx);
+        menuParams.x = (int) (menuParams.x - dx);
         menuParams.y = (int) (menuParams.y + dy);
         mWindowManager.updateViewLayout(menuHeadLayout, menuParams);
     }

@@ -2,13 +2,14 @@ package com.zoomx.zoomx.ui.menu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.ui.request.RequestActivity;
@@ -37,6 +38,7 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         menuEventsListener = listener;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private void initUI(Context context) {
         View view = inflate(context, R.layout.view_main_actions_menu, this);
         menuButton = view.findViewById(R.id.menu_main_fab);
@@ -61,7 +63,6 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             expand();
         } else if (id == R.id.menu_dismiss_fab) {
             collapse();
-            Toast.makeText(getContext(), "dismiss", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.menu_settings_fab) {
             Intent intent = new Intent(getContext(), SettingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -107,6 +108,9 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             case MotionEvent.ACTION_DOWN:
                 startX = event.getRawX();
                 startY = event.getRawY();
+                prevX = startX;
+                prevY = startY;
+                isScrolling = false;
                 return false;
             case MotionEvent.ACTION_MOVE:
                 if (isScrolling)
@@ -114,12 +118,10 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
 
                 int Xdiff = (int) (event.getRawX() - startX);
                 int Ydiff = (int) (event.getRawY() - startY);
-                if (Ydiff > 1.5 * mTouchSlop || Xdiff > 1.5 * mTouchSlop) {
+                if (Math.abs(Ydiff) > mTouchSlop || Math.abs(Xdiff) > mTouchSlop) {
                     // Start scrolling!
                     isScrolling = true;
                     return true;
-                } else {
-                    isScrolling = false;
                 }
                 break;
         }
@@ -131,12 +133,12 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         float currX = event.getRawX();
         float currY = event.getRawY();
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                startX = currX;
-                startY = currY;
-                prevX = currX;
-                prevY = currY;
-                break;
+//            case MotionEvent.ACTION_DOWN:
+//                startX = currX;
+//                startY = currY;
+//                prevX  = currX;
+//                prevY  = currY;
+//                break;
             case MotionEvent.ACTION_MOVE:
                 if (menuEventsListener != null) {
                     float dX = (currX - prevX);
