@@ -8,33 +8,27 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.WindowManager;
 
 /**
  * Created by Ahmed Fathallah on 12/14/2017.
  */
 
-public class ZoomxMenuService extends Service implements View.OnTouchListener {
+public class ZoomxMenuService extends Service implements MainActionMenu.ActionMenuEventsListener {
 
     private MainActionMenu menuHeadLayout;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams menuParams;
-    private int initialX;
-    private int initialY;
-    private float initialTouchX;
-    private float initialTouchY;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
-        menuHeadLayout = new MainActionMenu(this);
-        menuHeadLayout.setOnTouchListener(this);
+        menuHeadLayout = new MainActionMenu(this, this);
         menuParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_PHONE,
+                getWindowOverlayFlag(),
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
@@ -46,10 +40,18 @@ public class ZoomxMenuService extends Service implements View.OnTouchListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
             Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(myIntent);
         } else {
             mWindowManager.addView(menuHeadLayout, menuParams);
         }
+    }
+
+    private int getWindowOverlayFlag() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            return WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        else
+            return WindowManager.LayoutParams.TYPE_PHONE;
     }
 
     @Override
@@ -69,31 +71,11 @@ public class ZoomxMenuService extends Service implements View.OnTouchListener {
         return null;
     }
 
+
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                initialX = menuParams.x;
-                initialY = menuParams.y;
-                initialTouchX = event.getRawX();
-                initialTouchY = event.getRawY();
-                return true;
-
-            case MotionEvent.ACTION_UP:
-                int Xdiff = (int) (event.getRawX() - initialTouchX);
-                int Ydiff = (int) (event.getRawY() - initialTouchY);
-                if (Xdiff < 5 && Ydiff < 5) {
-                    menuHeadLayout.performClick();
-                }
-                return true;
-
-            case MotionEvent.ACTION_MOVE:
-                menuParams.x = initialX + (int) (event.getRawX() - initialTouchX);
-                menuParams.y = initialY + (int) (event.getRawY() - initialTouchY);
-                mWindowManager.updateViewLayout(menuHeadLayout, menuParams);
-                return true;
-        }
-        return false;
+    public void OnMenuMoved(float dx, float dy) {
+        menuParams.x = (int) (menuParams.x + dx);
+        menuParams.y = (int) (menuParams.y + dy);
+        mWindowManager.updateViewLayout(menuHeadLayout, menuParams);
     }
-
 }

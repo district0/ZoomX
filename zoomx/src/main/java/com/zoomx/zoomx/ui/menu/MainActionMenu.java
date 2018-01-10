@@ -3,7 +3,9 @@ package com.zoomx.zoomx.ui.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,14 +20,21 @@ import com.zoomx.zoomx.ui.settings.SettingActivity;
 
 public class MainActionMenu extends FrameLayout implements View.OnClickListener {
 
+    boolean isScrolling = false;
     private ImageView menuButton;
     private View expandedView;
-
     private boolean isMenuOpened = false;
+    private ActionMenuEventsListener menuEventsListener;
+    private float initialTouchX;
+    private float initialTouchY;
+    private float startX, startY;
+    private float prevX, prevY;
+    private int mTouchSlop;
 
-    public MainActionMenu(@NonNull Context context) {
+    public MainActionMenu(@NonNull Context context, ActionMenuEventsListener listener) {
         super(context);
         initUI(context);
+        menuEventsListener = listener;
     }
 
     private void initUI(Context context) {
@@ -40,6 +49,9 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         dismissButton.setOnClickListener(this);
         settingsButton.setOnClickListener(this);
         featuresButton.setOnClickListener(this);
+
+        ViewConfiguration mViewConfiguration = ViewConfiguration.get(getContext());
+        mTouchSlop = mViewConfiguration.getScaledTouchSlop();
     }
 
     @Override
@@ -56,6 +68,7 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             getContext().startActivity(intent);
         } else if (id == R.id.menu_features_fab) {
             Intent intent = new Intent(getContext(), RequestActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         }
     }
@@ -79,5 +92,66 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
     @Override
     public boolean performClick() {
         return super.performClick();
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        final int action = event.getAction();
+
+        if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+            isScrolling = false;
+            return false;
+        }
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                startX = event.getRawX();
+                startY = event.getRawY();
+                return false;
+            case MotionEvent.ACTION_MOVE:
+                if (isScrolling)
+                    return true;
+
+                int Xdiff = (int) (event.getRawX() - startX);
+                int Ydiff = (int) (event.getRawY() - startY);
+                if (Ydiff > 1.5 * mTouchSlop || Xdiff > 1.5 * mTouchSlop) {
+                    // Start scrolling!
+                    isScrolling = true;
+                    return true;
+                } else {
+                    isScrolling = false;
+                }
+                break;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float currX = event.getRawX();
+        float currY = event.getRawY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startX = currX;
+                startY = currY;
+                prevX = currX;
+                prevY = currY;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (menuEventsListener != null) {
+                    float dX = (currX - prevX);
+                    float dY = (currY - prevY);
+                    prevX = currX;
+                    prevY = currY;
+                    menuEventsListener.OnMenuMoved(dX, dY);
+                }
+                break;
+        }
+        return true;
+    }
+
+
+    public interface ActionMenuEventsListener {
+        void OnMenuMoved(float dx, float dy);
     }
 }
