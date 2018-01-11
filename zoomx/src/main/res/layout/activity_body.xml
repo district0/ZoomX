@@ -16,14 +16,22 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false">
 
-        <TextView
-            android:id="@+id/body_json_txt"
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:text="Body" />
+            android:fadeScrollbars="false"
+            android:scrollbars="horizontal">
+
+            <TextView
+                android:id="@+id/body_json_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Body" />
+        </HorizontalScrollView>
     </ScrollView>
 </LinearLayout>
