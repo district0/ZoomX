@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import com.zoomx.zoomx.db.converters.HeaderConverter;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by Ahmed Fathallah on 11/20/2017.
@@ -26,95 +27,138 @@ public class RequestEntity {
     private long responseSizeInBytes;
 
     @TypeConverters(HeaderConverter.class)
-    private HeaderViewModel rquestHeaders;
+    private HeaderViewModel requestHeaders;
     @TypeConverters(HeaderConverter.class)
     private HeaderViewModel responseHeaders;
 
-    public int getId() {
-        return id;
+    private RequestEntity(int code, String method, Date startDate, String url
+            , String responseBody, String requestBody, long tookTime, long responseSizeInBytes
+            , HeaderViewModel requestHeaders, HeaderViewModel responseHeaders) {
+        this.code = code;
+        this.method = method;
+        this.startDate = startDate;
+        this.url = url;
+        this.responseBody = responseBody;
+        this.requestBody = requestBody;
+        this.tookTime = tookTime;
+        this.responseSizeInBytes = responseSizeInBytes;
+        this.requestHeaders = requestHeaders;
+        this.responseHeaders = responseHeaders;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMethod() {
         return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
     }
 
     public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public String getUrl() {
         return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getResponseBody() {
         return responseBody;
     }
 
-    public void setResponseBody(String responseBody) {
-        this.responseBody = responseBody;
-    }
-
     public String getRequestBody() {
         return requestBody;
-    }
-
-    public void setRequestBody(String requestBody) {
-        this.requestBody = requestBody;
     }
 
     public long getTookTime() {
         return tookTime;
     }
 
-    public void setTookTime(long tookTime) {
-        this.tookTime = tookTime;
-    }
-
     public long getResponseSizeInBytes() {
         return responseSizeInBytes;
     }
 
-    public void setResponseSizeInBytes(long responseSizeInBytes) {
-        this.responseSizeInBytes = responseSizeInBytes;
-    }
-
-    public HeaderViewModel getRquestHeaders() {
-        return rquestHeaders;
-    }
-
-    public void setRquestHeaders(HeaderViewModel rquestHeaders) {
-        this.rquestHeaders = rquestHeaders;
+    public HeaderViewModel getRequestHeaders() {
+        return requestHeaders;
     }
 
     public HeaderViewModel getResponseHeaders() {
         return responseHeaders;
     }
 
-    public void setResponseHeaders(HeaderViewModel responseHeaders) {
-        this.responseHeaders = responseHeaders;
+    public static class Builder {
+
+        private int code;
+        private String method;
+        private Date startDate;
+        private String url;
+        private String responseBody;
+        private String requestBody;
+        private long tookTime;
+        private long responseSizeInBytes;
+        private Map<String, String> requestHeaders;
+        private Map<String, String> responseHeaders;
+
+        public Builder setCode(int code) {
+            this.code = code;
+            return this;
+        }
+
+        public Builder setMethod(String method) {
+            this.method = method;
+            return this;
+        }
+
+        public Builder setStartDate(Date startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public Builder setUrl(String url) {
+            this.url = url;
+            return this;
+        }
+
+        public Builder setResponseBody(String responseBody) {
+            this.responseBody = responseBody;
+            return this;
+        }
+
+        public Builder setRequestBody(String requestBody) {
+            this.requestBody = requestBody;
+            return this;
+        }
+
+        public Builder setTookTime(long tookTime) {
+            this.tookTime = tookTime;
+            return this;
+        }
+
+        public Builder setResponseSizeInBytes(long responseSizeInBytes) {
+            this.responseSizeInBytes = responseSizeInBytes;
+            return this;
+        }
+
+        public Builder setRequestHeaders(Map<String, String> requestHeaders) {
+            this.requestHeaders = requestHeaders;
+            return this;
+        }
+
+        public Builder setResponseHeaders(Map<String, String> responseHeaders) {
+            this.responseHeaders = responseHeaders;
+            return this;
+        }
+
+        public RequestEntity create() {
+            HeaderViewModel requestHeadersModel = new HeaderViewModel(requestHeaders);
+            HeaderViewModel responseHeadersModel = new HeaderViewModel(responseHeaders);
+
+            return new RequestEntity(code, method, startDate, url, responseBody, requestBody, tookTime
+                    , responseSizeInBytes, requestHeadersModel, responseHeadersModel);
+        }
     }
 }
