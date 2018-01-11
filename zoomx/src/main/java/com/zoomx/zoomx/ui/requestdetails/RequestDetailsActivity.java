@@ -108,9 +108,9 @@ public class RequestDetailsActivity extends AppCompatActivity {
             }
         }
 
-        if (requestEntity.getRquestHeaders() != null && requestEntity.getRquestHeaders().getHeadersMap() != null) {
+        if (requestEntity.getRequestHeaders() != null && requestEntity.getRequestHeaders().getHeadersMap() != null) {
             headersMap.put(getString(R.string.request_headers), "");
-            for (Map.Entry<String, String> entry : requestEntity.getRquestHeaders().getHeadersMap().entrySet()) {
+            for (Map.Entry<String, String> entry : requestEntity.getRequestHeaders().getHeadersMap().entrySet()) {
                 headersMap.put(entry.getKey(), entry.getValue());
             }
         }
