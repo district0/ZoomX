@@ -1,5 +1,6 @@
 package com.zoomx.zoomx.manager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
@@ -13,6 +14,7 @@ import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
 
 public final class ZoomX {
 
+    @SuppressLint("StaticFieldLeak")
     private static Config config;
     private static RequestDao requestDao;
 
