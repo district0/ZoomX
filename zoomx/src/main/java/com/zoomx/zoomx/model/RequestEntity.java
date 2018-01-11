@@ -31,6 +31,9 @@ public class RequestEntity {
     @TypeConverters(HeaderConverter.class)
     private HeaderViewModel responseHeaders;
 
+    public RequestEntity() {
+    }
+
     private RequestEntity(int code, String method, Date startDate, String url
             , String responseBody, String requestBody, long tookTime, long responseSizeInBytes
             , HeaderViewModel requestHeaders, HeaderViewModel responseHeaders) {
@@ -46,50 +49,98 @@ public class RequestEntity {
         this.responseHeaders = responseHeaders;
     }
 
+    //region Setter and getter
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCode() {
         return code;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public String getMethod() {
         return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public Date getStartDate() {
         return startDate;
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
     public String getUrl() {
         return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getResponseBody() {
         return responseBody;
     }
 
+    public void setResponseBody(String responseBody) {
+        this.responseBody = responseBody;
+    }
+
     public String getRequestBody() {
         return requestBody;
+    }
+
+    public void setRequestBody(String requestBody) {
+        this.requestBody = requestBody;
     }
 
     public long getTookTime() {
         return tookTime;
     }
 
+    public void setTookTime(long tookTime) {
+        this.tookTime = tookTime;
+    }
+
     public long getResponseSizeInBytes() {
         return responseSizeInBytes;
+    }
+
+    public void setResponseSizeInBytes(long responseSizeInBytes) {
+        this.responseSizeInBytes = responseSizeInBytes;
     }
 
     public HeaderViewModel getRequestHeaders() {
         return requestHeaders;
     }
 
+    public void setRequestHeaders(HeaderViewModel requestHeaders) {
+        this.requestHeaders = requestHeaders;
+    }
+
     public HeaderViewModel getResponseHeaders() {
         return responseHeaders;
     }
 
+    public void setResponseHeaders(HeaderViewModel responseHeaders) {
+        this.responseHeaders = responseHeaders;
+    }
+
+    //endregion
+
+    //region builder
     public static class Builder {
 
         private int code;
@@ -161,4 +212,6 @@ public class RequestEntity {
                     , responseSizeInBytes, requestHeadersModel, responseHeadersModel);
         }
     }
+    //endregion
+
 }
