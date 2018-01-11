@@ -53,7 +53,7 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
         viewModel.getRequests().observe(this, new Observer<List<RequestEntity>>() {
             @Override
             public void onChanged(@Nullable List<RequestEntity> requestEntities) {
-                if (searchView.isIconified())
+                if (searchView != null && searchView.isIconified())
                     requestAdapter.setRequestEntityList(requestEntities,
                             RequestActivity.this);
             }

@@ -12,4 +12,5 @@
     <string name="response_headers">Response Headers</string>
     <string name="setting_network_tracker_switch">Network Tracking</string>
     <string name="search">Search</string>
+    <string name="request_error_code_text">Error</string>
 </resources>
