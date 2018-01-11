@@ -1,15 +1,17 @@
 package com.zoomx.zoomx;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
-import com.zoomx.zoomx.manager.ZoomX;
-import com.zoomx.zoomx.model.HeaderViewModel;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
+import com.zoomx.zoomx.volley.NetworkLogManager;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -35,8 +37,8 @@ public class NetworkLogInterceptor implements Interceptor {
     }
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
-        RequestEntity request = new RequestEntity();
+    public Response intercept(@NonNull Chain chain) throws IOException {
+        RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
         Response response = null;
 
         if (!SettingsManager.get(context).isNetworkTrackingEnabled()) {
@@ -47,10 +49,10 @@ public class NetworkLogInterceptor implements Interceptor {
 
         boolean hasRequestBody = requestBody != null;
 
-        request.setMethod(retrofitRequest.method());
-        request.setUrl(retrofitRequest.url().toString());
-        request.setRequestBody(hasRequestBody ? requestBody.toString() : "");
-        request.setRquestHeaders(getHeaders(retrofitRequest.headers()));
+        requestBuilder.setMethod(retrofitRequest.method())
+                .setUrl(retrofitRequest.url().toString())
+                .setRequestBody(hasRequestBody ? requestBody.toString() : "")
+                .setRequestHeaders(getHeaders(retrofitRequest.headers()));
 
         long startDateInMs = System.currentTimeMillis();
         try {
@@ -59,29 +61,27 @@ public class NetworkLogInterceptor implements Interceptor {
             e.printStackTrace();
         }
         long timeTookInMs = System.currentTimeMillis() - startDateInMs;
-        request.setStartDate(new Date(startDateInMs));
-        request.setTookTime(timeTookInMs);
+        requestBuilder.setStartDate(new Date(startDateInMs));
+        requestBuilder.setTookTime(timeTookInMs);
 
         if (response != null) {
-            request.setResponseHeaders(getHeaders(response.headers()));
-            request.setCode(response.code());
-            request.setResponseBody(responseBody(response));
+            requestBuilder.setResponseHeaders(getHeaders(response.headers()));
+            requestBuilder.setCode(response.code());
+            requestBuilder.setResponseBody(responseBody(response));
         }
 
-        ZoomX.getRequestDao().insertRequest(request);
-
-
+        NetworkLogManager.log(requestBuilder);
         return response;
     }
 
-    private HeaderViewModel getHeaders(Headers headers) {
-        HeaderViewModel model = new HeaderViewModel();
+    private Map<String, String> getHeaders(Headers headers) {
+        Map<String, String> headersMap = new HashMap<>();
         if (headers != null) {
             for (int i = 0; i < headers.size(); i++) {
-                model.addHeader(headers.name(i), headers.value(i));
+                headersMap.put(headers.name(i), headers.value(i));
             }
         }
-        return model;
+        return headersMap;
     }
 
     private String responseBody(Response response) throws IOException {
