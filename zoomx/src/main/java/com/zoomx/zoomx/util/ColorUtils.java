@@ -14,7 +14,7 @@ public class ColorUtils {
 
     public static int getCodeColor(int code, Context context) {
 
-        int color = Color.BLACK;
+        int color;
 
         switch (code) {
             case 200:

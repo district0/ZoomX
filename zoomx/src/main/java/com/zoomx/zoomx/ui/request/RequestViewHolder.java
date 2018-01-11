@@ -1,5 +1,6 @@
 package com.zoomx.zoomx.ui.request;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.util.ColorUtils;
+import com.zoomx.zoomx.util.ErrorConstants;
 import com.zoomx.zoomx.util.FormatUtil;
 
 /**
@@ -28,7 +30,8 @@ public class RequestViewHolder extends RecyclerView.ViewHolder {
         if (requestEntity != null) {
             urlTextView.setText(requestEntity.getUrl());
             methodTypeTextView.setText(requestEntity.getMethod());
-            codeTextView.setText(String.valueOf(requestEntity.getCode()));
+            codeTextView.setText(requestEntity.getCode() == ErrorConstants.CONNECTION_ERROR ? itemView.getContext().getString(R.string.request_error_code_text)
+                    : String.valueOf(requestEntity.getCode()));
             codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode(), itemView.getContext()));
             startDateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(), FormatUtil.DATE_FORMAT));
             itemView.setOnClickListener(new View.OnClickListener() {
