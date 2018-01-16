@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.zoomx.zoomx"
+        applicationId "com.zoomx.example"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1

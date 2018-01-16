@@ -1,4 +1,4 @@
-package com.zoomx.zoomx;
+package com.zoomx.example;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

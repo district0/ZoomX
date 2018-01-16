@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.model;
+package com.zoomx.example.model;
 
 /**
  * Created by Ahmed Fathallah on 11/20/2017.
