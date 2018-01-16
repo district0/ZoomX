@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.retrofit;
+package com.zoomx.example.retrofit;
 
 import android.content.Context;
 

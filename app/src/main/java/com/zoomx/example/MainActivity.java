@@ -1,4 +1,4 @@
-package com.zoomx.zoomx;
+package com.zoomx.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.zoomx.zoomx.model.User;
-import com.zoomx.zoomx.retrofit.ApiService;
-import com.zoomx.zoomx.retrofit.NetworkManager;
+import com.zoomx.example.model.User;
+import com.zoomx.example.retrofit.ApiService;
+import com.zoomx.example.retrofit.NetworkManager;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

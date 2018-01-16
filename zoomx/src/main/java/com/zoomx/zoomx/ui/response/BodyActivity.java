@@ -7,10 +7,12 @@ import android.widget.TextView;
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
 
-public class BodyActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-    private TextView bodyTextView;
-    private TextView urlTextView;
+public class BodyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,32 @@ public class BodyActivity extends AppCompatActivity {
     }
 
     public void initUi(String url, String body) {
-        urlTextView = findViewById(R.id.body_url_txt);
-        bodyTextView = findViewById(R.id.body_json_txt);
+        TextView urlTextView = findViewById(R.id.body_url_txt);
+        TextView bodyTextView = findViewById(R.id.body_json_txt);
         urlTextView.setText(url);
-        bodyTextView.setText(body);
+        bodyTextView.setText(formatJsonPretty(body));
+    }
+
+    /**
+     * Convert a JSON string to pretty  version
+     *
+     * @param jsonString
+     * @return
+     */
+    public String formatJsonPretty(String jsonString) {
+        Object json = null;
+        try {
+            json = new JSONTokener(jsonString).nextValue();
+            if (json instanceof JSONObject) {
+                return ((JSONObject) json).toString(8);
+            } else if (json instanceof JSONArray) {
+                return ((JSONArray) json).toString(8);
+            } else {
+                return jsonString;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

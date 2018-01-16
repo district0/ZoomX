@@ -1,9 +1,10 @@
-package com.zoomx.zoomx;
+package com.zoomx.example;
 
 import android.app.Application;
 
 import com.zoomx.zoomx.manager.Config;
 import com.zoomx.zoomx.manager.ZoomX;
+
 
 /**
  * Created by Ahmed Fathallah on 12/11/2017.

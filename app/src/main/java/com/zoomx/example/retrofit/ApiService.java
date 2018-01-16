@@ -1,6 +1,6 @@
-package com.zoomx.zoomx.retrofit;
+package com.zoomx.example.retrofit;
 
-import com.zoomx.zoomx.model.User;
+import com.zoomx.example.model.User;
 
 import java.util.List;
 

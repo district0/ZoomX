@@ -1,4 +1,4 @@
-package com.zoomx.zoomx;
+package com.zoomx.example;
 
 import org.junit.Test;
 
