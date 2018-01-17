@@ -70,7 +70,11 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_request_list, menu);
+        prepareSearchView(menu);
+        return true;
+    }
 
+    private void prepareSearchView(Menu menu) {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -86,8 +90,6 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
                 (SearchView.SearchAutoComplete)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setTextColor(Color.GRAY);
         searchAutoComplete.setHintTextColor(Color.GRAY);
-
-        return true;
     }
 
     @Override
