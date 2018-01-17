@@ -1,5 +1,7 @@
 package com.zoomx.zoomx.volley;
 
+import android.os.AsyncTask;
+
 import com.zoomx.zoomx.manager.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
 
@@ -11,6 +13,14 @@ public class NetworkLogManager {
 
     public static void log(RequestEntity.Builder builder) {
         if (builder != null)
-            ZoomX.getRequestDao().insertRequest(builder.create());
+            new DbAsyncTask().execute(builder);
+    }
+
+    public static class DbAsyncTask extends AsyncTask<RequestEntity.Builder, Void, Void> {
+        @Override
+        protected Void doInBackground(RequestEntity.Builder... builders) {
+            ZoomX.getRequestDao().insertRequest(builders[0].create());
+            return null;
+        }
     }
 }
