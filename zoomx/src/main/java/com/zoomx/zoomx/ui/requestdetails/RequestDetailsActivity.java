@@ -26,6 +26,7 @@ import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.requestlist.RequestActivity;
 import com.zoomx.zoomx.util.ColorUtils;
+import com.zoomx.zoomx.util.FormatUtil;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -86,10 +87,10 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(requestDetailsAdapter);
         methodTextView.setText(requestEntity.getMethod());
-        codeTextView.setText(requestEntity.getCode() + "");
+        codeTextView.setText(String.valueOf(requestEntity.getCode()));
         codeTextView.setTextColor(ColorUtils.getCodeColor(requestEntity.getCode(), this));
         urlTextView.setText(requestEntity.getUrl());
-        dateTextView.setText(requestEntity.getStartDate().toString());
+        dateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(), FormatUtil.DATE_FORMAT));
 
         responseArrowImageView.setOnClickListener(new View.OnClickListener() {
             @Override
