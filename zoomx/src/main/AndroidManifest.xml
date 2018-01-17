@@ -24,7 +24,19 @@
 
         <activity
             android:name=".ui.settings.SettingActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            android:authorities="com.zoomx.zoomx">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths"/>
+
+        </provider>
     </application>
 
 </manifest>
