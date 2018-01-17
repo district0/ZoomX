@@ -145,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/ic_arrow"
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
@@ -172,7 +173,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_arrow" />
+                app:srcCompat="@drawable/ic_arrow"
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 

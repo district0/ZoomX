@@ -66,7 +66,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> impl
                     filteredList = requests;
                 } else {
                     for (RequestEntity request : requests) {
-                        if ((request.getCode() + "").equals(constraint)) {
+                        if ((String.valueOf(request.getCode())).equals(constraint)) {
 
                             filteredList.add(request);
                         }
