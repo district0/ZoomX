@@ -14,7 +14,7 @@ public class FormatUtil {
     final public static String DATE_FORMAT = "yyyy-MM-dd hh:mm:ss a";
 
     public static String formatDate(Date date, String format) {
-        String formattedString = null;
+        String formattedString = "";
         if (date != null) {
             try {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);

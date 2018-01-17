@@ -67,7 +67,7 @@ public class RequestEntity {
     }
 
     public String getMethod() {
-        return method;
+        return method != null? method : "";
     }
 
     public void setMethod(String method) {
@@ -83,7 +83,7 @@ public class RequestEntity {
     }
 
     public String getUrl() {
-        return url;
+        return url != null? url:"missing";
     }
 
     public void setUrl(String url) {
@@ -91,7 +91,7 @@ public class RequestEntity {
     }
 
     public String getResponseBody() {
-        return responseBody;
+        return responseBody != null? responseBody : "";
     }
 
     public void setResponseBody(String responseBody) {
@@ -99,7 +99,7 @@ public class RequestEntity {
     }
 
     public String getRequestBody() {
-        return requestBody;
+        return requestBody != null? requestBody : "";
     }
 
     public void setRequestBody(String requestBody) {
