@@ -5,13 +5,16 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -32,11 +35,15 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
     private SearchView searchView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_activity_layout);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recycler_view);
         requestAdapter = new RequestAdapter();
@@ -63,7 +70,11 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_request_list, menu);
+        prepareSearchView(menu);
+        return true;
+    }
 
+    private void prepareSearchView(Menu menu) {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -73,8 +84,12 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
                 searchManager.getSearchableInfo(getComponentName()));
         searchView.setSubmitButtonEnabled(true);
         searchView.setOnQueryTextListener(this);
-
-        return true;
+        searchView.setBackgroundColor(Color.WHITE);
+        /* Code for changing the textcolor and hint color for the search view */
+        SearchView.SearchAutoComplete searchAutoComplete =
+                (SearchView.SearchAutoComplete)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchAutoComplete.setTextColor(Color.GRAY);
+        searchAutoComplete.setHintTextColor(Color.GRAY);
     }
 
     @Override
