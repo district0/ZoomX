@@ -7,6 +7,7 @@
     <application>
         <activity
             android:name=".ui.request.RequestActivity"
+            android:theme="@style/ZoomXAppTheme"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <meta-data
