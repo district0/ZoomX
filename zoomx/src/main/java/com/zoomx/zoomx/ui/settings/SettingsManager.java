@@ -27,7 +27,7 @@ public class SettingsManager {
     }
 
     public Boolean isNetworkTrackingEnabled() {
-        return sharedPreferenceManager.getBoolean(NETWORK_TRACKER_KEY, false);
+        return sharedPreferenceManager.getBoolean(NETWORK_TRACKER_KEY, true);
     }
 
     public void setNetworkTrackingStatus(boolean trackingStatus) {
