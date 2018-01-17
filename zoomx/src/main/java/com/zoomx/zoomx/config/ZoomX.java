@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.manager;
+package com.zoomx.zoomx.config;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -33,4 +33,5 @@ public final class ZoomX {
     public static RequestDao getRequestDao() {
         return requestDao;
     }
+
 }

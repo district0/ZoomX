@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.zoomx.zoomx.R;
-import com.zoomx.zoomx.ui.request.RequestActivity;
+import com.zoomx.zoomx.ui.requestlist.RequestActivity;
 import com.zoomx.zoomx.ui.settings.SettingActivity;
 
 /**

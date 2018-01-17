@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.manager;
+package com.zoomx.zoomx.config;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -27,11 +27,6 @@ public class Config {
 
         public Builder(Context context) {
             this.context = context;
-        }
-
-        public Builder networkLayerType(int networkLayerType) {
-            this.networkLayerType = networkLayerType;
-            return this;
         }
 
         public Config build() {
