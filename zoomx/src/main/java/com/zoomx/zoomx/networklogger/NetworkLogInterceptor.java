@@ -1,11 +1,10 @@
-package com.zoomx.zoomx;
+package com.zoomx.zoomx.networklogger;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
-import com.zoomx.zoomx.volley.NetworkLogManager;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

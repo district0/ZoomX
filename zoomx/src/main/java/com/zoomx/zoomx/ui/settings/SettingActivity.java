@@ -24,6 +24,7 @@ public class SettingActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.setting_screen_title);
         networkTrackerSwitch = findViewById(R.id.setting_network_tracker_switch);
         networkTrackerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

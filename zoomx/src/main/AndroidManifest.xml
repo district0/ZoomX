@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name=".ui.request.RequestActivity"
+            android:name=".ui.requestlist.RequestActivity"
             android:launchMode="singleTask"
             android:theme="@style/ZoomXAppTheme"
             android:windowSoftInputMode="stateHidden" />
@@ -19,7 +19,7 @@
             android:launchMode="singleTask"
             android:theme="@style/ZoomXAppTheme" />
         <activity
-            android:name=".ui.response.BodyActivity"
+            android:name=".ui.requestdetails.JsonViewActivity"
             android:launchMode="singleTask"
             android:theme="@style/ZoomXAppTheme" />
 

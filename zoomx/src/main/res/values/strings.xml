@@ -18,4 +18,5 @@
     <string name="request_details_screen_title">Request Details</string>
     <string name="json_viewer_screen_title">JSON Viewer</string>
     <string name="request_screen_title">Request</string>
+    <string name="setting_screen_title">Settings</string>
 </resources>

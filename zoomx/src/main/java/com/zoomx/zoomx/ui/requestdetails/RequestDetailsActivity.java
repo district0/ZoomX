@@ -25,8 +25,7 @@ import android.widget.Toolbar;
 import com.zoomx.zoomx.BuildConfig;
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
-import com.zoomx.zoomx.ui.request.RequestActivity;
-import com.zoomx.zoomx.ui.response.BodyActivity;
+import com.zoomx.zoomx.ui.requestlist.RequestActivity;
 import com.zoomx.zoomx.util.ColorUtils;
 import com.zoomx.zoomx.util.FormatUtil;
 
@@ -57,7 +56,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.request_details_screen_title);
+        getSupportActionBar().setTitle(R.string.request_details_screen_title);
 
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(RequestActivity.REQUEST_ID)) {
             int requestId = (int) getIntent().getExtras().get(RequestActivity.REQUEST_ID);
@@ -115,7 +114,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
     }
 
     public void showBody(String url, String body) {
-        Intent intent = new Intent(RequestDetailsActivity.this, BodyActivity.class);
+        Intent intent = new Intent(RequestDetailsActivity.this, JsonViewActivity.class);
         intent.putExtra(BODY_URL_KEY, url);
         intent.putExtra(BODY_JSON_KEY, body);
         startActivity(intent);

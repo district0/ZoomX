@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.response;
+package com.zoomx.zoomx.ui.requestdetails;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-public class BodyActivity extends AppCompatActivity {
+public class JsonViewActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
@@ -24,7 +24,7 @@ public class BodyActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.json_viewer_screen_title);
+        getSupportActionBar().setTitle(R.string.json_viewer_screen_title);
 
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().
                 containsKey(RequestDetailsActivity.BODY_URL_KEY)) {

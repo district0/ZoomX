@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.request;
+package com.zoomx.zoomx.ui.requestlist;
 
 import android.app.SearchManager;
 import android.arch.lifecycle.Observer;
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +20,6 @@ import android.view.MenuItem;
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
-import com.zoomx.zoomx.viewmodel.RequestListViewModel;
 
 import java.util.List;
 
@@ -44,7 +42,7 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.request_screen_title);
+        getSupportActionBar().setTitle(R.string.request_screen_title);
 
         recyclerView = findViewById(R.id.recycler_view);
         requestAdapter = new RequestAdapter();
