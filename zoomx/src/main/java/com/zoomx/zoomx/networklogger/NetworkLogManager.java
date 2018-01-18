@@ -1,8 +1,8 @@
-package com.zoomx.zoomx.volley;
+package com.zoomx.zoomx.networklogger;
 
 import android.os.AsyncTask;
 
-import com.zoomx.zoomx.manager.ZoomX;
+import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
 
 /**

@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.response;
+package com.zoomx.zoomx.ui.requestdetails;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-public class BodyActivity extends AppCompatActivity {
+public class JsonViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

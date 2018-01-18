@@ -3,7 +3,7 @@ package com.zoomx.example.retrofit;
 import android.content.Context;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.zoomx.zoomx.NetworkLogInterceptor;
+import com.zoomx.zoomx.networklogger.NetworkLogInterceptor;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

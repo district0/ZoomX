@@ -2,8 +2,8 @@ package com.zoomx.example;
 
 import android.app.Application;
 
-import com.zoomx.zoomx.manager.Config;
-import com.zoomx.zoomx.manager.ZoomX;
+import com.zoomx.zoomx.config.Config;
+import com.zoomx.zoomx.config.ZoomX;
 
 
 /**
