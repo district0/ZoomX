@@ -7,8 +7,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@android:color/white">
+
+        </android.support.v7.widget.Toolbar>
 
         <TextView
             android:layout_width="match_parent"
@@ -144,9 +153,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_arrow"
-                android:layout_alignParentRight="true" />
+                app:srcCompat="@drawable/ic_arrow" />
 
         </RelativeLayout>
 
@@ -172,9 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_arrow"
-                android:layout_alignParentRight="true" />
+                app:srcCompat="@drawable/ic_arrow" />
 
         </RelativeLayout>
 
@@ -190,7 +199,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:dividerHeight="1dip"
-            android:focusable="false" />
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
     </LinearLayout>
 

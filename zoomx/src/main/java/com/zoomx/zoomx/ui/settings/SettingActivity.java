@@ -3,6 +3,7 @@ package com.zoomx.zoomx.ui.settings;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
+import android.support.v7.widget.Toolbar;
 import android.widget.CompoundButton;
 
 import com.zoomx.zoomx.R;
@@ -11,7 +12,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private SwitchCompat networkTrackerSwitch;
     public static final String NETWORK_TRACKER_KEY = "networkTrackerKey";
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,9 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         networkTrackerSwitch = findViewById(R.id.setting_network_tracker_switch);
         networkTrackerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

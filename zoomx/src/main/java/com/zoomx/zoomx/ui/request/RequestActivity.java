@@ -44,6 +44,7 @@ public class RequestActivity extends AppCompatActivity implements SearchView.OnQ
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.request_screen_title);
 
         recyclerView = findViewById(R.id.recycler_view);
         requestAdapter = new RequestAdapter();
