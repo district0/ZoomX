@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.zoomx.zoomx.BuildConfig;
 import com.zoomx.zoomx.R;
@@ -46,11 +47,16 @@ public class RequestDetailsActivity extends AppCompatActivity {
     private TextView methodTextView, codeTextView, urlTextView, dateTextView;
     private ImageView responseArrowImageView, requestArrowImageView;
     private RequestEntity mRequestEntity;
+    private android.support.v7.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_details);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.request_details_screen_title);
 
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(RequestActivity.REQUEST_ID)) {
             int requestId = (int) getIntent().getExtras().get(RequestActivity.REQUEST_ID);
