@@ -20,7 +20,7 @@ Add it in your root build.gradle at the end of repositories:
 		}
 	}
   
-Step 2. Add the dependency [ make sure that you are on the latest release number]
+Step 2. Add the dependency [ make sure that you are on the latest release number ]
 
 	dependencies {
 	        compile 'com.github.fathallah92:ZoomX:0.5'
