@@ -4,7 +4,7 @@ Tool to log all network calls in a suitable format.
 
 # [Retrofit & Volley] or your own netwoking methods is easy to integrate
 
-Zoomx is very simple in integration with volley and retrofit or any network library. Even you are not working with network library you can integrate zoomx with your netwoking requests methods. 
+Zoomx is very simple in integration with volley and retrofit or any network library you can even integrate zoomx with your netwoking requests methods. 
 
 # Feature Examples
 
@@ -30,7 +30,44 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 	        compile 'com.github.fathallah92:ZoomX:0.5'
 	}
   
-  Step 3. Add netwrok debugging interceptor 
+Step 3. Initiate ZoomX service
+
+        ZoomX.init(new Config.Builder(this).build());
+	
+Step 4. Log your network requests 
+        
+- Retrofit
+	  Just add Zoomx NetworkLogInterceptor:
+	  
+	  OkHttpClient.Builder httpClient = new OkHttpClient
+                .Builder()
+                .addInterceptor(new NetworkLogInterceptor(this.context));
+		
+- Volley or any request method 
+	  Just create zoomx request entitiy object then send it to zoomx network log manager. 
+	  
+	For example: 
+	
+	RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
+	
+        String requestBody = request.getBody();
+        boolean hasRequestBody = requestBody != null;
+        Date startDate = new Date(request.getStartTime());
+
+        requestBuilder.setMethod(request.getHttpMethod().name())
+                .setCode(statusCode)
+                .setStartDate(startDate)
+                .setTookTime(Calendar.getInstance().getTimeInMillis()- request.getStartTime())
+                .setUrl(request.getUrl())
+                .setRequestBody(hasRequestBody ? requestBody : "")
+                .setRequestHeaders(request.getBodyParameters());
+
+        if (response != null) {
+            requestBuilder.setResponseBody(response);
+        }
+
+        NetworkLogManager.log(requestBuilder);
+        
   
   # TODO
   
