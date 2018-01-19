@@ -2,7 +2,7 @@
 
 Tool to log all network calls in a suitable format.
 
-# [Retrofit & Volley] or your own netwoking methods is easy to integrate
+# [Retrofit & Volley] even your own netwoking methods integration 
 
 Zoomx is very simple in integration with volley and retrofit or any network library you can even integrate zoomx with your netwoking requests methods. 
 
