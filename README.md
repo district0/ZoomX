@@ -2,9 +2,9 @@
 
 Tool to log all network calls in a suitable format.
 
+# Feature Examples
 
-
-
+[![Webp.net-gifmaker.gif](https://s17.postimg.org/8gz1mfrin/Webp.net-gifmaker.gif)](https://postimg.org/image/cq3rolurv/)
 
 # Usage 
 
@@ -25,11 +25,7 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 	dependencies {
 	        compile 'com.github.fathallah92:ZoomX:0.5'
 	}
-  
-  
-  
-  
-  
+    
   # TODO
   
   - App dependency version abstraction
