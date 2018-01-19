@@ -15,4 +15,8 @@
     <string name="request_error_code_text">Error</string>
     <string name="menu_item_share_request">share request</string>
     <string name="share_file_chooser_title">Share File</string>
+    <string name="request_details_screen_title">Request Details</string>
+    <string name="json_viewer_screen_title">JSON Viewer</string>
+    <string name="request_screen_title">Request</string>
+    <string name="setting_screen_title">Settings</string>
 </resources>
