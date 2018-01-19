@@ -48,8 +48,7 @@ Step 4. Log your network requests
 	  
 	For example: 
 	
-	RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
-	
+	  RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
         String requestBody = request.getBody();
         boolean hasRequestBody = requestBody != null;
         Date startDate = new Date(request.getStartTime());
