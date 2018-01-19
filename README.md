@@ -48,6 +48,7 @@ Step 4. Log your network requests
 	  
 	For example: 
 	
+	```
 	RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
 	
         String requestBody = request.getBody();
@@ -67,7 +68,7 @@ Step 4. Log your network requests
         }
 
         NetworkLogManager.log(requestBuilder);
-        
+        ```
   
   # TODO
   
