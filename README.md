@@ -4,9 +4,6 @@ Zoomx is a in-app debugging tool to view and log all netwrok services history in
 
 [![Webp.net-gifmaker.gif](https://s17.postimg.org/8gz1mfrin/Webp.net-gifmaker.gif)](https://postimg.org/image/cq3rolurv/)
 
-# Usage 
-Zoomx is very simple in integration with volley and retrofit or any network library.
-
 Gradle:
 
 Step 1. Add the JitPack repository to your build file
