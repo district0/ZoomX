@@ -6,9 +6,9 @@
 
     <application>
         <activity
-            android:name=".ui.request.RequestActivity"
-            android:theme="@style/ZoomXAppTheme"
+            android:name=".ui.requestlist.RequestActivity"
             android:launchMode="singleTask"
+            android:theme="@style/ZoomXAppTheme"
             android:windowSoftInputMode="stateHidden" />
         <meta-data
             android:name="android.app.searchable"
@@ -16,26 +16,29 @@
 
         <activity
             android:name=".ui.requestdetails.RequestDetailsActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/ZoomXAppTheme" />
         <activity
-            android:name=".ui.response.BodyActivity"
-            android:launchMode="singleTask" />
+            android:name=".ui.requestdetails.JsonViewActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/ZoomXAppTheme" />
 
         <service android:name=".ui.menu.ZoomxMenuService" />
 
         <activity
             android:name=".ui.settings.SettingActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:theme="@style/ZoomXAppTheme" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:grantUriPermissions="true"
+            android:authorities="com.zoomx.zoomx"
             android:exported="false"
-            android:authorities="com.zoomx.zoomx">
+            android:grantUriPermissions="true">
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_paths"/>
+                android:resource="@xml/file_provider_paths" />
 
         </provider>
     </application>

@@ -1,4 +1,4 @@
-package com.zoomx.zoomx.ui.request;
+package com.zoomx.zoomx.ui.requestlist;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;

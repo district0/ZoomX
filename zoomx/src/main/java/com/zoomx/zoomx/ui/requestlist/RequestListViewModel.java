@@ -1,10 +1,10 @@
-package com.zoomx.zoomx.viewmodel;
+package com.zoomx.zoomx.ui.requestlist;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.os.AsyncTask;
 
-import com.zoomx.zoomx.manager.ZoomX;
+import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
 
 import java.util.List;
