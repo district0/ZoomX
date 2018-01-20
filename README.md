@@ -1,16 +1,11 @@
 # ZoomX
 
-Tool to log all network calls in a suitable format.
-
-# [Retrofit & Volley] even your own netwoking methods integration 
-
-Zoomx is very simple in integration with volley and retrofit or any network library you can even integrate zoomx with your netwoking requests methods. 
-
-# Feature Examples
+Zoomx is a in-app debugging tool to view and log all netwrok services history in a suitable format. 
 
 [![Webp.net-gifmaker.gif](https://s17.postimg.org/8gz1mfrin/Webp.net-gifmaker.gif)](https://postimg.org/image/cq3rolurv/)
 
 # Usage 
+Zoomx is very simple in integration with volley and retrofit or any network library.
 
 Gradle:
 
@@ -49,27 +44,14 @@ Step 4. Log your network requests
 	For example: 
 	
 	  RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
-        String requestBody = request.getBody();
-        boolean hasRequestBody = requestBody != null;
-        Date startDate = new Date(request.getStartTime());
 
-        requestBuilder.setMethod(request.getHttpMethod().name())
-                .setCode(statusCode)
-                .setStartDate(startDate)
-                .setTookTime(Calendar.getInstance().getTimeInMillis()- request.getStartTime())
-                .setUrl(request.getUrl())
-                .setRequestBody(hasRequestBody ? requestBody : "")
-                .setRequestHeaders(request.getBodyParameters());
-
-        if (response != null) {
-            requestBuilder.setResponseBody(response);
-        }
+        requestBuilder.setMethod("GET")
+                .setCode(200)
+                .setStartDate("Start-Date")
+                .setUrl("https://github.com/district0/ZoomX")
+                .setRequestBody("JSON_BODY")
+                .setRequestHeaders("HEADERS")
+		.setResponseBody(response);
 
         NetworkLogManager.log(requestBuilder);
-  
-  # TODO
-  
-  - App dependency version abstraction
-  - Revisit implementing map
-  - Revisit request adapter
   
