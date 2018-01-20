@@ -52,3 +52,10 @@ Step 4. Log your network requests
 
         NetworkLogManager.log(requestBuilder);
   
+  # Features 
+    - Display list of requests in real time sorted by date. 
+    - Send logged request/response by email.   
+    - Search within requests.  
+    - Copy any response/requests and share it via any app ex. (email). 
+    - Display request details in a pretty format.
+
