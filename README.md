@@ -21,7 +21,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency [ make sure that you are on the latest release number ]
 
 	dependencies {
-	        compile 'com.github.fathallah92:ZoomX:0.5'
+	        compile 'com.github.district0:ZoomX:0.6'
 	}
   
 Step 3. Initiate ZoomX service
