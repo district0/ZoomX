@@ -4,6 +4,8 @@ Zoomx is a in-app debugging tool to view and log all netwrok services history in
 
 [![Webp.net-gifmaker.gif](https://s17.postimg.org/8gz1mfrin/Webp.net-gifmaker.gif)](https://postimg.org/image/cq3rolurv/)
 
+# Usage
+
 Gradle:
 
 Step 1. Add the JitPack repository to your build file
@@ -19,7 +21,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency [ make sure that you are on the latest release number ]
 
 	dependencies {
-	        compile 'com.github.fathallah92:ZoomX:0.5'
+	        compile 'com.github.district0:ZoomX:0.6'
 	}
   
 Step 3. Initiate ZoomX service
@@ -52,3 +54,9 @@ Step 4. Log your network requests
 
         NetworkLogManager.log(requestBuilder);
   
+  # Features 
+    - Display list of requests in real time sorted by date. 
+    - Send logged request/response by email.   
+    - Search within requests.  
+    - Copy any response/requests and share it via any app ex. (email). 
+    - Display request details in a pretty format.
