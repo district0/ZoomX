@@ -36,7 +36,7 @@ Step 3. Initiate ZoomX service
 Step 4. Log your network requests 
         
 # Retrofit
-	  Just add Zoomx NetworkLogInterceptor:
+Just add Zoomx NetworkLogInterceptor:
 ```java	  
 	  OkHttpClient.Builder httpClient = new OkHttpClient
                 .Builder()
@@ -44,9 +44,10 @@ Step 4. Log your network requests
 ```
 
 # Volley or any request method 
-	  Just create zoomx request entitiy object then send it to zoomx network log manager. 
+
+Just create zoomx request entitiy object then send it to zoomx network log manager. 
 	  
-	For example: 
+For example: 
 	
 ```java
 	RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
