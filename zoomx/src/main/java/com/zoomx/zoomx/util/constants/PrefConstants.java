@@ -7,7 +7,4 @@ package com.zoomx.zoomx.util.constants;
 public class PrefConstants {
 
     public static final String NETWORK_TRACKER_KEY = "networkTrackerKey";
-    public static final String SHOW_MENU_ON_APP_START_KEY = "showMenuOnAppStart";
-
-
 }

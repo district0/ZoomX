@@ -24,7 +24,6 @@ public class SettingActivity extends AppCompatActivity implements CompoundButton
         mSettingsManager = SettingsManager.get(this);
         initToolBar();
         initSwitch(R.id.setting_network_tracker_switch, mSettingsManager.isNetworkTrackingEnabled());
-        initSwitch(R.id.setting_initail_show_switch, mSettingsManager.canShowMenuOnAppStart());
     }
 
     private void initSwitch(int id, boolean isChecked) {
@@ -44,8 +43,6 @@ public class SettingActivity extends AppCompatActivity implements CompoundButton
         int id = buttonView.getId();
         if (id == R.id.setting_network_tracker_switch) {
             mSettingsManager.setNetworkTrackingStatus(isChecked);
-        } else if (id == R.id.setting_initail_show_switch) {
-            mSettingsManager.setShowMenuOnAppStart(isChecked);
         }
     }
 }

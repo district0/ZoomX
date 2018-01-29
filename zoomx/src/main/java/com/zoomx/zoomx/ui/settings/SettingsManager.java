@@ -32,13 +32,5 @@ public class SettingsManager {
     public void setNetworkTrackingStatus(boolean trackingStatus) {
         sharedPreferenceManager.saveBoolean(PrefConstants.NETWORK_TRACKER_KEY, trackingStatus);
     }
-
-    public boolean canShowMenuOnAppStart() {
-        return sharedPreferenceManager.getBoolean(PrefConstants.SHOW_MENU_ON_APP_START_KEY, true);
-    }
-
-    public void setShowMenuOnAppStart(boolean canShow) {
-        sharedPreferenceManager.saveBoolean(PrefConstants.SHOW_MENU_ON_APP_START_KEY, canShow);
-    }
 }
 
