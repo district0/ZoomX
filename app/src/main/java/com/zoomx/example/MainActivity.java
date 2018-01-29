@@ -2,13 +2,11 @@ package com.zoomx.example;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.zoomx.example.model.User;
 import com.zoomx.example.retrofit.ApiService;
 import com.zoomx.example.retrofit.NetworkManager;
+import com.zoomx.zoomx.config.ZoomX;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,10 +20,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-
-    ImageView overLayImage;
-    String TAG = MainActivity.class.getSimpleName();
-    WindowManager wm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<User> value) {
-                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -69,15 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-
-
     @Override
-    protected void onDestroy() {
-        if (overLayImage != null && wm != null) {
-            wm.removeView(overLayImage);
-        }
-        super.onDestroy();
+    protected void onStart() {
+        super.onStart();
+        ZoomX.showMenuHead();
     }
 
-
+    @Override
+    protected void onStop() {
+        ZoomX.hideMenuHead();
+        super.onStop();
+    }
 }

@@ -1,7 +1,6 @@
 package com.zoomx.zoomx.config;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.zoomx.zoomx.db.AppDatabase;
@@ -21,7 +20,6 @@ public final class ZoomX {
     public static void init(Config config) {
         ZoomX.config = config;
         setupDataBase();
-        config.getContext().startService(new Intent(config.getContext(), ZoomxMenuService.class));
     }
 
     private static void setupDataBase() {
@@ -29,9 +27,18 @@ public final class ZoomX {
         requestDao = database.requestDao();
     }
 
+    public static void showMenuHead() {
+        ZoomxMenuService.showMenuHead(config.getContext());
+    }
+
+    public static void hideMenuHead() {
+        ZoomxMenuService.hideMenuHead(config.getContext());
+    }
+
     @NonNull
     public static RequestDao getRequestDao() {
         return requestDao;
     }
+
 
 }
