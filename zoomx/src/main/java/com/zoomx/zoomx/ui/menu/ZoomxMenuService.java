@@ -19,9 +19,9 @@ import android.view.WindowManager;
 
 public class ZoomxMenuService extends Service implements MainActionMenu.ActionMenuEventsListener {
 
-    private static final String MENU_STATE_KEY = "showMenuBubble";
-    private static final String SHOW_MENU_KEY = "showMenuBubble";
-    private static final String HIDE_MENU_KEY = "hideMenuBubble";
+    private static final String MENU_STATE_KEY = "menuActionState";
+    private static final String SHOW_MENU_KEY = "showMenu";
+    private static final String HIDE_MENU_KEY = "hideMenu";
 
     private MainActionMenu menuHeadLayout;
     private MenuCloseView menuCloseView;
@@ -127,8 +127,8 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
         int x = 0;
         int y = 0;
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 getWindowOverlayFlag(),
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSPARENT);

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.zoomx.zoomx.db.AppDatabase;
 import com.zoomx.zoomx.db.RequestDao;
 import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
+import com.zoomx.zoomx.ui.settings.SettingsManager;
 
 /**
  * Created by Ahmed Fathallah on 12/10/2017.
@@ -20,6 +21,14 @@ public final class ZoomX {
     public static void init(Config config) {
         ZoomX.config = config;
         setupDataBase();
+        handleShowMenuOnStart();
+    }
+
+    private static void handleShowMenuOnStart() {
+        SettingsManager.get(config.getContext()).setShowMenuOnAppStart(config.canShowMenuOnAppStart());
+        if (config.canShowMenuOnAppStart()) {
+            showMenuHead();
+        }
     }
 
     private static void setupDataBase() {

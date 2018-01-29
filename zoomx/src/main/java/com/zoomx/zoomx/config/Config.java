@@ -14,6 +14,7 @@ public class Config {
 
     Config(@NonNull Builder builder) {
         this.context = builder.context;
+        this.showMenuOnAppStart = builder.showMenuOnAppStart;
     }
 
     public boolean canShowMenuOnAppStart() {

@@ -1,6 +1,5 @@
 package com.zoomx.example;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
 import com.zoomx.zoomx.config.Config;
@@ -17,6 +16,8 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         ZoomX.init(new Config.Builder(this)
+                .showMenuOnAppStart(true)
                 .build());
     }
+
 }
