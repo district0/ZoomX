@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.zoomx.example.model.User;
 import com.zoomx.example.retrofit.ApiService;
 import com.zoomx.example.retrofit.NetworkManager;
+import com.zoomx.zoomx.config.ZoomX;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
