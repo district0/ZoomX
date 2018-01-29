@@ -30,4 +30,17 @@
         android:layout_height="0.5dp"
         android:background="@color/grey_500" />
 
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/setting_initail_show_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/setting_menu_showing_on_start_switch"
+        android:textColor="@android:color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_500" />
+
 </LinearLayout>
