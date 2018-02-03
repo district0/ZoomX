@@ -29,12 +29,6 @@ public final class ZoomX {
         }
     }
 
-    private static void handleShowMenuOnStart() {
-        if (config.canShowMenuOnAppStart()) {
-            showMenuHead();
-        }
-    }
-
     private static void setupDataBase() {
         AppDatabase database = AppDatabase.get(config.getContext());
         requestDao = database.requestDao();
