@@ -5,13 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.pddstudio.highlightjs.HighlightJsView;
+import com.pddstudio.highlightjs.models.Language;
+import com.pddstudio.highlightjs.models.Theme;
 import com.zoomx.zoomx.R;
-import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 
 public class JsonViewActivity extends AppCompatActivity {
 
@@ -36,9 +39,14 @@ public class JsonViewActivity extends AppCompatActivity {
 
     public void initUi(String url, String body) {
         TextView urlTextView = findViewById(R.id.body_url_txt);
-        TextView bodyTextView = findViewById(R.id.body_json_txt);
         urlTextView.setText(url);
-        bodyTextView.setText(formatJsonPretty(body));
+        HighlightJsView highlightJsView = (HighlightJsView) findViewById(R.id.highlight_view);
+        //change theme and set language to auto detect
+        highlightJsView.setTheme(Theme.MONOKAI);
+        highlightJsView.setHighlightLanguage(Language.JSON);
+        //load the source (can be loaded by String, File or URL)
+        highlightJsView.setZoomSupportEnabled(false);
+        highlightJsView.setSource(formatJsonPretty(body));
     }
 
     /**
@@ -52,9 +60,9 @@ public class JsonViewActivity extends AppCompatActivity {
         try {
             json = new JSONTokener(jsonString).nextValue();
             if (json instanceof JSONObject) {
-                return ((JSONObject) json).toString(8);
+                return ((JSONObject) json).toString(1);
             } else if (json instanceof JSONArray) {
-                return ((JSONArray) json).toString(8);
+                return ((JSONArray) json).toString(1);
             } else {
                 return jsonString;
             }

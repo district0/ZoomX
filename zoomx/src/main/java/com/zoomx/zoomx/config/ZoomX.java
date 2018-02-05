@@ -20,6 +20,13 @@ public final class ZoomX {
     public static void init(Config config) {
         ZoomX.config = config;
         setupDataBase();
+        handleShowMenuOnStart();
+    }
+
+    private static void handleShowMenuOnStart() {
+        if (config.canShowMenuOnAppStart()) {
+            showMenuHead();
+        }
     }
 
     private static void setupDataBase() {

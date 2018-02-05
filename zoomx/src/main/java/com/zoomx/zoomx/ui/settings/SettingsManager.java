@@ -3,8 +3,7 @@ package com.zoomx.zoomx.ui.settings;
 import android.content.Context;
 
 import com.zoomx.zoomx.util.SharedPreferenceManager;
-
-import static com.zoomx.zoomx.ui.settings.SettingActivity.NETWORK_TRACKER_KEY;
+import com.zoomx.zoomx.util.constants.PrefConstants;
 
 /**
  * Created by Ibrahim AbdelGawad on 12/19/2017.
@@ -27,10 +26,11 @@ public class SettingsManager {
     }
 
     public Boolean isNetworkTrackingEnabled() {
-        return sharedPreferenceManager.getBoolean(NETWORK_TRACKER_KEY, true);
+        return sharedPreferenceManager.getBoolean(PrefConstants.NETWORK_TRACKER_KEY, true);
     }
 
     public void setNetworkTrackingStatus(boolean trackingStatus) {
-        sharedPreferenceManager.saveBoolean(NETWORK_TRACKER_KEY, trackingStatus);
+        sharedPreferenceManager.saveBoolean(PrefConstants.NETWORK_TRACKER_KEY, trackingStatus);
     }
 }
+

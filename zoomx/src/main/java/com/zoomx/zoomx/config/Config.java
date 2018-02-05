@@ -10,10 +10,15 @@ import android.support.annotation.NonNull;
 public class Config {
 
     private Context context;
-
+    private boolean showMenuOnAppStart;
 
     Config(@NonNull Builder builder) {
         this.context = builder.context;
+        this.showMenuOnAppStart = builder.showMenuOnAppStart;
+    }
+
+    public boolean canShowMenuOnAppStart() {
+        return showMenuOnAppStart;
     }
 
     @NonNull
@@ -23,10 +28,15 @@ public class Config {
 
     public static class Builder {
         Context context;
-        int networkLayerType;
+        boolean showMenuOnAppStart;
 
         public Builder(Context context) {
             this.context = context;
+        }
+
+        public Builder showMenuOnAppStart(boolean showMenuOnAppStart) {
+            this.showMenuOnAppStart = showMenuOnAppStart;
+            return this;
         }
 
         public Config build() {
