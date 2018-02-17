@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.zoomx.zoomx.R;
-import com.zoomx.zoomx.ui.requestlist.RequestActivity;
+import com.zoomx.zoomx.ui.info.InfoActivity;
 import com.zoomx.zoomx.ui.settings.SettingActivity;
 
 /**
@@ -68,7 +68,7 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         } else if (id == R.id.menu_features_fab) {
-            Intent intent = new Intent(getContext(), RequestActivity.class);
+            Intent intent = new Intent(getContext(), InfoActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         }
