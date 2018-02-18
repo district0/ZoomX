@@ -10,10 +10,21 @@ import android.support.annotation.NonNull;
 public class Config {
 
     private Context context;
-
+    private boolean showMenuOnAppStart;
+    private boolean showOnShakeEvent;
 
     Config(@NonNull Builder builder) {
         this.context = builder.context;
+        this.showMenuOnAppStart = builder.showMenuOnAppStart;
+        this.showOnShakeEvent = builder.showOnShakeEvent;
+    }
+
+    boolean canShowMenuOnAppStart() {
+        return showMenuOnAppStart;
+    }
+
+    boolean canShowOnShakeEvent() {
+        return showOnShakeEvent;
     }
 
     @NonNull
@@ -23,10 +34,21 @@ public class Config {
 
     public static class Builder {
         Context context;
-        int networkLayerType;
+        boolean showMenuOnAppStart;
+        boolean showOnShakeEvent;
 
         public Builder(Context context) {
             this.context = context;
+        }
+
+        public Builder showMenuOnAppStart(boolean showMenuOnAppStart) {
+            this.showMenuOnAppStart = showMenuOnAppStart;
+            return this;
+        }
+
+        public Builder showOnShakeEvent(boolean showOnShakeEvent) {
+            this.showOnShakeEvent = showOnShakeEvent;
+            return this;
         }
 
         public Config build() {

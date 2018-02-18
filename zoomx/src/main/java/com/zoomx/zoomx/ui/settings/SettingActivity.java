@@ -8,11 +8,11 @@ import android.widget.CompoundButton;
 
 import com.zoomx.zoomx.R;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
-    private SwitchCompat networkTrackerSwitch;
-    public static final String NETWORK_TRACKER_KEY = "networkTrackerKey";
     private Toolbar toolbar;
+    private SettingsManager mSettingsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +21,28 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+        mSettingsManager = SettingsManager.get(this);
+        initToolBar();
+        initSwitch(R.id.setting_network_tracker_switch, mSettingsManager.isNetworkTrackingEnabled());
+    }
 
+    private void initSwitch(int id, boolean isChecked) {
+        SwitchCompat switchCompat = findViewById(id);
+        switchCompat.setOnCheckedChangeListener(this);
+        switchCompat.setChecked(isChecked);
+    }
+
+    private void initToolBar() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.setting_screen_title);
-        networkTrackerSwitch = findViewById(R.id.setting_network_tracker_switch);
-        networkTrackerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SettingsManager.get(getApplicationContext()).setNetworkTrackingStatus(isChecked);
-            }
-        });
-        networkTrackerSwitch.setChecked(SettingsManager.get(getApplicationContext()).isNetworkTrackingEnabled());
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        int id = buttonView.getId();
+        if (id == R.id.setting_network_tracker_switch) {
+            mSettingsManager.setNetworkTrackingStatus(isChecked);
+        }
     }
 }

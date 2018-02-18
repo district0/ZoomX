@@ -11,6 +11,7 @@
     <string name="request_headers">Request Headers</string>
     <string name="response_headers">Response Headers</string>
     <string name="setting_network_tracker_switch">Network Tracking</string>
+    <string name="setting_menu_showing_on_start_switch">Show menu on start</string>
     <string name="search">Search</string>
     <string name="request_error_code_text">Error</string>
     <string name="menu_item_share_request">share request</string>

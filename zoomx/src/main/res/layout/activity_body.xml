@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context="com.zoomx.zoomx.ui.requestdetails.JsonViewActivity">
 
@@ -24,25 +25,10 @@
         android:autoLink="web"
         android:padding="10dp" />
 
-    <ScrollView
+    <com.pddstudio.highlightjs.HighlightJsView
+        android:id="@+id/highlight_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="false">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadeScrollbars="false"
-            android:scrollbars="horizontal">
-
-            <TextView
-                android:id="@+id/body_json_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textIsSelectable="true"
-                android:padding="10dp" />
-          
-        </HorizontalScrollView>
-    </ScrollView>
+        android:isScrollContainer="false"
+        android:overScrollMode="never" />
 </LinearLayout>
