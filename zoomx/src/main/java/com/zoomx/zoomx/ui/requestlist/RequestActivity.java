@@ -24,7 +24,5 @@ public class RequestActivity extends AppCompatActivity {
                 .add(R.id.container, new RequestListFragment())
                 .commit();
     }
-
-
 }
 

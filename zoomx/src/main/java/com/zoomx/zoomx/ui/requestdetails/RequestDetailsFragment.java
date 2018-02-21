@@ -67,6 +67,7 @@ public class RequestDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.request_details_fragment, container, false);
         ((RequestDetailsActivity) getActivity()).getSupportActionBar().setTitle(R.string.request_details_screen_title);
+        setHasOptionsMenu(true);
         if (getArguments() != null && getArguments().containsKey(RequestListFragment.REQUEST_ID)) {
             int requestId = (int) getArguments().get(RequestListFragment.REQUEST_ID);
             viewModel = ViewModelProviders.of(this).get(RequestDetailsViewModel.class);

@@ -43,7 +43,7 @@ public class RequestListFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_list_fragment, container, false);
-
+        setHasOptionsMenu(true);
         ((RequestActivity) getActivity()).getSupportActionBar().setTitle(R.string.request_screen_title);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         requestAdapter = new RequestAdapter();
