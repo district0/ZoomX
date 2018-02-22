@@ -92,11 +92,16 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
     }
 
     private void hideMenu() {
-        if (this.menuHeadLayout != null) {
-            this.mWindowManager.removeView(this.menuHeadLayout);
-            this.menuHeadLayout = null;
-            this.stopSelf();
+        try {
+            if (this.menuHeadLayout != null && menuHeadLayout.getWindowToken() != null) {
+                this.mWindowManager.removeView(this.menuHeadLayout);
+                this.menuHeadLayout = null;
+                this.stopSelf();
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override
