@@ -32,4 +32,8 @@
     <string name="info_device_resolution">Device resolution</string>
     <string name="info_release">Release</string>
     <string name="info_api">API</string>
+
+    <string name="info_settings_section_title">Settings</string>
+    <string name="info_clear_app_data">Clear app data</string>
+    <string name="info_uninstall">Uninstall</string>
 </resources>

@@ -73,11 +73,24 @@ public class InfoSectionView extends FrameLayout {
         return view;
     }
 
-    private View createViewWithSwitch(InfoModel model) {
-        return null;
+    private View createViewWithButton(final InfoModel model) {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.info_text_view, null);
+        TextView title = view.findViewById(R.id.info_text_title_tv);
+        TextView value = view.findViewById(R.id.info_text_value_tv);
+        title.setText(model.getTitle());
+        value.setVisibility(GONE);
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (model.getButtonAction() != null) {
+                    model.getButtonAction().run();
+                }
+            }
+        });
+        return view;
     }
 
-    private View createViewWithButton(InfoModel model) {
+    private View createViewWithSwitch(InfoModel model) {
         return null;
     }
 

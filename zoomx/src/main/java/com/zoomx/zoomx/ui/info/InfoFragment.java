@@ -39,7 +39,31 @@ public class InfoFragment extends Fragment {
         InfoSectionView deviceInfo = view.findViewById(R.id.info_device_view);
         deviceInfo.setInfoModels(createDeviceInfo());
         deviceInfo.setSectionTitle(getString(R.string.info_device_section_title));
+
+        InfoSectionView actions = view.findViewById(R.id.info_actions_view);
+        actions.setInfoModels(createSettings());
+        actions.setSectionTitle(getString(R.string.info_settings_section_title));
     }
+
+    private ArrayList<InfoModel> createSettings() {
+        ArrayList<InfoModel> infoModels = new ArrayList<>();
+        InfoModel model = new InfoModel(InfoModel.BUTTON_VIEW_TYPE, getString(R.string.info_clear_app_data), null, new Runnable() {
+            @Override
+            public void run() {
+                PhoneUtils.clearAppData(getActivity());
+            }
+        });
+        infoModels.add(model);
+        model = new InfoModel(InfoModel.BUTTON_VIEW_TYPE, getString(R.string.info_uninstall), null, new Runnable() {
+            @Override
+            public void run() {
+                PhoneUtils.uninstall(getActivity());
+            }
+        });
+        infoModels.add(model);
+        return infoModels;
+    }
+
 
     private ArrayList<InfoModel> createDeviceInfo() {
         ArrayList<InfoModel> infoModels = new ArrayList<>();

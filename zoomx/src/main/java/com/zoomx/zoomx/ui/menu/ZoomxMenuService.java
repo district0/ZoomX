@@ -81,7 +81,7 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
                     startActivity(myIntent);
                 } else {
                     mWindowManager.addView(menuHeadLayout, menuParams);
-                    addCloseView();
+                    //addCloseView();
                 }
             } else if (HIDE_MENU_KEY.equals(intent.getExtras().getString(MENU_STATE_KEY))) {
                 hideMenu();
