@@ -30,9 +30,9 @@ public class JsonViewActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.json_viewer_screen_title);
 
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().
-                containsKey(RequestDetailsActivity.BODY_URL_KEY)) {
-            String url = (String) getIntent().getExtras().get(RequestDetailsActivity.BODY_URL_KEY);
-            String body = (String) getIntent().getExtras().get(RequestDetailsActivity.BODY_JSON_KEY);
+                containsKey(RequestDetailsFragment.BODY_URL_KEY)) {
+            String url = (String) getIntent().getExtras().get(RequestDetailsFragment.BODY_URL_KEY);
+            String body = (String) getIntent().getExtras().get(RequestDetailsFragment.BODY_JSON_KEY);
             initUi(url, body);
         }
     }

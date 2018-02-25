@@ -45,12 +45,14 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         ImageView dismissButton = view.findViewById(R.id.menu_dismiss_fab);
         ImageView settingsButton = view.findViewById(R.id.menu_settings_fab);
         ImageView featuresButton = view.findViewById(R.id.menu_features_fab);
+        ImageView infoButton = view.findViewById(R.id.menu_info_fab);
         expandedView = view.findViewById(R.id.menu_expanded_view);
 
         menuButton.setOnClickListener(this);
         dismissButton.setOnClickListener(this);
         settingsButton.setOnClickListener(this);
         featuresButton.setOnClickListener(this);
+        infoButton.setOnClickListener(this);
 
         ViewConfiguration mViewConfiguration = ViewConfiguration.get(getContext());
         mTouchSlop = mViewConfiguration.getScaledTouchSlop();
@@ -68,6 +70,10 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         } else if (id == R.id.menu_features_fab) {
+            Intent intent = new Intent(getContext(), RequestActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+        } else if (id == R.id.menu_info_fab) {
             Intent intent = new Intent(getContext(), InfoActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
