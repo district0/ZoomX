@@ -1,9 +1,14 @@
 package com.zoomx.zoomx.util;
 
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 
 public class PhoneUtils {
@@ -84,5 +89,29 @@ public class PhoneUtils {
 
     public static int getAndroidApi() {
         return Build.VERSION.SDK_INT;
+    }
+
+    public static void clearAppData(Context context) {
+        if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
+            ActivityManager manager = ((ActivityManager) context.getSystemService(ACTIVITY_SERVICE));
+            if (manager != null) {
+                manager.clearApplicationUserData();
+            }
+        } else {
+            try {
+                // clearing app data
+                Runtime runtime = Runtime.getRuntime();
+                runtime.exec("pm clear YOUR_APP_PACKAGE_GOES HERE");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void uninstall(Context context) {
+        Uri packageURI = Uri.parse("package:" + context.getPackageName());
+        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+        context.startActivity(uninstallIntent);
     }
 }

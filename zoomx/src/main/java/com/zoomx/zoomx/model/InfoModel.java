@@ -13,11 +13,20 @@ public class InfoModel {
     private int type;
     private String value;
     private boolean state;
+    private Runnable buttonAction;
 
     public InfoModel(int type, String title, String value) {
         this.title = title;
         this.type = type;
         this.value = value;
+        this.buttonAction = null;
+    }
+
+    public InfoModel(int type, String title, String value, Runnable buttonAction) {
+        this.title = title;
+        this.type = type;
+        this.value = value;
+        this.buttonAction = buttonAction;
     }
 
     public String getTitle() {
@@ -62,5 +71,9 @@ public class InfoModel {
 
     public boolean isButtonType() {
         return BUTTON_VIEW_TYPE == type;
+    }
+
+    public Runnable getButtonAction() {
+        return buttonAction;
     }
 }
