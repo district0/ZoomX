@@ -1,28 +1,27 @@
-package com.zoomx.zoomx.ui.requestlist;
+package com.zoomx.zoomx.ui.info;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.zoomx.zoomx.R;
 
-/**
- * Created by Ibrahim AbdelGawad on 12/3/2017.
- */
-
-public class RequestActivity extends AppCompatActivity {
-
+public class InfoActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.request_activity_layout);
+        setContentView(R.layout.activity_info);
+        initUI();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        InfoFragment infoFragment = new InfoFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.container, new RequestListFragment())
+                .add(R.id.container, infoFragment)
                 .commit();
     }
-}
 
+}

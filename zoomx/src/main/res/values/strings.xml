@@ -20,4 +20,20 @@
     <string name="json_viewer_screen_title">JSON Viewer</string>
     <string name="request_screen_title">Request</string>
     <string name="setting_screen_title">Settings</string>
+    <string name="info_screen_title">App Info</string>
+
+    <string name="info_app_section_title">Application info</string>
+    <string name="info_package_name">Package name</string>
+    <string name="info_version_code">Version Code</string>
+    <string name="info_version_name">Version name</string>
+    <string name="info_device_model">Device model</string>
+    <string name="info_device_density">Density</string>
+    <string name="info_device_section_title">Device info</string>
+    <string name="info_device_resolution">Device resolution</string>
+    <string name="info_release">Release</string>
+    <string name="info_api">API</string>
+
+    <string name="info_settings_section_title">Settings</string>
+    <string name="info_clear_app_data">Clear app data</string>
+    <string name="info_uninstall">Uninstall</string>
 </resources>

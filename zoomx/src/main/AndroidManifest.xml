@@ -10,6 +10,7 @@
             android:launchMode="singleTask"
             android:theme="@style/ZoomXAppTheme"
             android:windowSoftInputMode="stateHidden" />
+
         <meta-data
             android:name="android.app.searchable"
             android:resource="@xml/searchable" />
@@ -35,12 +36,15 @@
             android:authorities="com.zoomx.zoomx"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
-
         </provider>
+
+        <activity
+            android:name=".ui.info.InfoActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/ZoomXAppTheme" />
     </application>
 
 </manifest>

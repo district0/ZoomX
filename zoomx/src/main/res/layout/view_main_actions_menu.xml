@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -48,6 +49,19 @@
             android:padding="10dp"
             android:src="@drawable/ic_view_list"
             android:visibility="visible"
+            tools:visibility="visible" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/menu_info_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_blue_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_info"
             tools:visibility="visible" />
     </LinearLayout>
 

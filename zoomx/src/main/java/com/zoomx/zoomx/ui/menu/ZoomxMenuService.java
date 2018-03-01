@@ -82,7 +82,7 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
                 } else {
                     if (menuHeadLayout.getWindowToken() == null) {
                         mWindowManager.addView(menuHeadLayout, menuParams);
-                        addCloseView();
+                        // addCloseView();
                     }
                 }
             } else if (HIDE_MENU_KEY.equals(intent.getExtras().getString(MENU_STATE_KEY))) {
@@ -94,11 +94,16 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
     }
 
     private void hideMenu() {
-        if (this.menuHeadLayout != null) {
-            this.mWindowManager.removeView(this.menuHeadLayout);
-            this.menuHeadLayout = null;
-            this.stopSelf();
+        try {
+            if (this.menuHeadLayout != null && menuHeadLayout.getWindowToken() != null) {
+                this.mWindowManager.removeView(this.menuHeadLayout);
+                this.menuHeadLayout = null;
+                this.stopSelf();
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override
