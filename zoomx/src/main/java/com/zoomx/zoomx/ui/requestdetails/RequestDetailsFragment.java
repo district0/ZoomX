@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zoomx.zoomx.BuildConfig;
@@ -51,6 +52,7 @@ public class RequestDetailsFragment extends Fragment {
     private RequestDetailsViewModel viewModel;
     private RequestEntity mRequestEntity;
     private View view;
+    private RelativeLayout requestLayout, responseLayout;
 
 
     public static RequestDetailsFragment newInstance(int requestId) {
@@ -91,10 +93,9 @@ public class RequestDetailsFragment extends Fragment {
         TextView codeTextView = view.findViewById(R.id.request_details_code_txt);
         TextView urlTextView = view.findViewById(R.id.request_details_url_txt);
         TextView dateTextView = view.findViewById(R.id.request_details_startDate_txt);
-        ImageView responseArrowImageView = view.findViewById(R.id.request_details_response_body_arrow_img);
-        ImageView requestArrowImageView = view.findViewById(R.id.request_details_request_body_arrow_img);
+        responseLayout = view.findViewById(R.id.request_details_response_layout);
+        requestLayout = view.findViewById(R.id.request_details_request_body_layout);
         RecyclerView recyclerView = view.findViewById(R.id.request_details_recycler_view);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setNestedScrollingEnabled(false);
@@ -109,14 +110,14 @@ public class RequestDetailsFragment extends Fragment {
         urlTextView.setText(requestEntity.getUrl());
         dateTextView.setText(FormatUtil.formatDate(requestEntity.getStartDate(), FormatUtil.DATE_FORMAT));
 
-        responseArrowImageView.setOnClickListener(new View.OnClickListener() {
+        responseLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showBody(requestEntity.getUrl(), requestEntity.getResponseBody());
             }
         });
 
-        requestArrowImageView.setOnClickListener(new View.OnClickListener() {
+        requestLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showBody(requestEntity.getUrl(), requestEntity.getRequestBody());

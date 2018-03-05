@@ -132,7 +132,9 @@
             android:id="@+id/request_details_response_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/row_selector"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,7 +163,9 @@
             android:id="@+id/request_details_request_body_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/row_selector"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="wrap_content"
