@@ -33,7 +33,7 @@
 
         <provider
             android:name=".util.ZoomxFileProvider"
-            android:authorities="${applicationId}.zoomx.fileprovider"
+            android:authorities="com.zoomx.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

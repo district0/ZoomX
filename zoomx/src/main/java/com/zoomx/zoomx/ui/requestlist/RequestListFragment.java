@@ -13,7 +13,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,7 +36,6 @@ public class RequestListFragment extends Fragment implements SearchView.OnQueryT
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
     private SearchView searchView;
-    private Toolbar toolbar;
 
     @Nullable
     @Override
