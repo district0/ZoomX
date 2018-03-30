@@ -11,6 +11,7 @@ import com.zoomx.zoomx.model.RequestEntity;
 
 public class NetworkLogManager {
 
+    //TODO: check if we could do it with Rxjava
     public static void log(RequestEntity.Builder builder) {
         if (builder != null)
             new DbAsyncTask().execute(builder);
