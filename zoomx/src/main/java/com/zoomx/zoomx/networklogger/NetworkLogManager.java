@@ -1,9 +1,10 @@
 package com.zoomx.zoomx.networklogger;
 
-import android.os.AsyncTask;
-
 import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Ahmed Fathallah on 1/11/2018.
@@ -11,17 +12,15 @@ import com.zoomx.zoomx.model.RequestEntity;
 
 public class NetworkLogManager {
 
-    //TODO: check if we could do it with Rxjava
     public static void log(RequestEntity.Builder builder) {
         if (builder != null)
-            new DbAsyncTask().execute(builder);
+            insertRequest(builder).subscribe();
     }
 
-    public static class DbAsyncTask extends AsyncTask<RequestEntity.Builder, Void, Void> {
-        @Override
-        protected Void doInBackground(RequestEntity.Builder... builders) {
-            ZoomX.getRequestDao().insertRequest(builders[0].create());
-            return null;
-        }
+    private static Completable insertRequest(RequestEntity.Builder builder) {
+        return Completable
+                .fromAction(() -> ZoomX.getRequestDao().insertRequest(builder.create()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 }
