@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
@@ -36,4 +37,8 @@ dependencies {
     implementation project(':zoomx')
     implementation 'android.arch.lifecycle:extensions:1.0.0'
     compile 'com.android.support:multidex:1.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
