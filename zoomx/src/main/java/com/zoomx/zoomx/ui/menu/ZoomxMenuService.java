@@ -29,11 +29,18 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
     private WindowManager.LayoutParams menuParams;
 
     public static void showMenuHead(Context context) {
-        Intent intent = new Intent(context, ZoomxMenuService.class);
-        Bundle bundle = new Bundle();
-        bundle.putString(MENU_STATE_KEY, SHOW_MENU_KEY);
-        intent.putExtras(bundle);
-        context.startService(intent);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(context)) {
+            Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(myIntent);
+        } else {
+            Intent intent = new Intent(context, ZoomxMenuService.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(MENU_STATE_KEY, SHOW_MENU_KEY);
+            intent.putExtras(bundle);
+            context.startService(intent);
+        }
     }
 
     public static void hideMenuHead(Context context) {
@@ -75,15 +82,10 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
 
         if (intent != null && intent.getExtras() != null) {
             if (SHOW_MENU_KEY.equals(intent.getExtras().getString(MENU_STATE_KEY))) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-                    Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(myIntent);
-                } else {
-                    if (menuHeadLayout.getWindowToken() == null) {
-                        mWindowManager.addView(menuHeadLayout, menuParams);
-                        // addCloseView();
-                    }
+
+                if (menuHeadLayout.getWindowToken() == null) {
+                    mWindowManager.addView(menuHeadLayout, menuParams);
+                    // addCloseView();
                 }
             } else if (HIDE_MENU_KEY.equals(intent.getExtras().getString(MENU_STATE_KEY))) {
                 hideMenu();
