@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ZoomX.showMenuHead();
+        ZoomX.INSTANCE.showMenuHead();
     }
 
     @Override
     protected void onStop() {
-        ZoomX.hideMenuHead();
+        ZoomX.INSTANCE.hideMenuHead();
         super.onStop();
     }
 }

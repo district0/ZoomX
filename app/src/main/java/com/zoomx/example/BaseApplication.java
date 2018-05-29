@@ -15,7 +15,7 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        ZoomX.init(new Config.Builder(this)
+        ZoomX.INSTANCE.init(new Config.Builder(this)
                 .showMenuOnAppStart(false)
                 .build());
     }
