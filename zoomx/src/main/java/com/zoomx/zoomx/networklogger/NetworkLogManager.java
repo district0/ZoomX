@@ -5,6 +5,7 @@ import com.zoomx.zoomx.model.RequestEntity;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by Ahmed Fathallah on 1/11/2018.
@@ -20,6 +21,7 @@ public class NetworkLogManager {
     private static Completable insertRequest(RequestEntity.Builder builder) {
         return Completable
                 .fromAction(() -> ZoomX.getRequestDao().insertRequest(builder.create()))
+                .doOnError(Timber::e)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }
