@@ -40,4 +40,5 @@
     <string name="zoomx_ui_options_title">Zoomx UI</string>
     <string name="zoomx_ui_option_notification">Notification</string>
     <string name="zoomx_ui_options_draw_over_app">Draw over app</string>
+    <string name="zoomx_ui_chooser">Choose how to access Zoomx</string>
 </resources>

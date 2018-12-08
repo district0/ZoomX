@@ -26,10 +26,6 @@ class SettingsManager(private val sharedPreferenceManager: SharedPreferenceManag
         sharedPreferenceManager.saveBoolean(PrefConstants.NETWORK_TRACKER_KEY, trackingStatus)
     }
 
-    fun saveZoomxUIOption(@ZoomxUIOption option: Int) {
-        sharedPreferenceManager.saveInt(PrefConstants.ZOOMX_UI_OPTION_KEY, option)
-    }
-
     companion object {
         @JvmStatic
         operator fun get(context: Context): SettingsManager {

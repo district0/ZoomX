@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
 
-    private var toolbar: Toolbar? = null
+    private lateinit var toolbar: Toolbar
     private lateinit var mSettingsManager: SettingsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
 
         zoomx_ui_options.setOnClickListener {
 
-            var view = layoutInflater.inflate(R.layout.zoomx_ui_options_checkboxes, null, false)
+            val view = layoutInflater.inflate(R.layout.zoomx_ui_options_checkboxes, null, false)
 
             val defaultChecked = if (mSettingsManager.zoomxUIOption == ZoomxUIOption.NOTIFICATION)
                 R.id.radio_notification_option else R.id.radio_draw_over_apps_option
@@ -53,13 +53,13 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
             with(view.findViewById<RadioGroup>(R.id.zoomx_ui_options_radios)) {
                 check(defaultChecked)
                 setOnCheckedChangeListener { _, checkedId ->
-                    mSettingsManager.saveZoomxUIOption(if (checkedId == R.id.radio_notification_option)
-                        ZoomxUIOption.NOTIFICATION else ZoomxUIOption.DRAW_OVER_APPS)
+                    mSettingsManager.zoomxUIOption = if (checkedId == R.id.radio_notification_option)
+                        ZoomxUIOption.NOTIFICATION else ZoomxUIOption.DRAW_OVER_APPS
                 }
             }
             val dialog: AlertDialog = AlertDialog
                     .Builder(this)
-                    .setTitle("Choose how to access Zoomx")
+                    .setTitle(getString(R.string.zoomx_ui_chooser))
                     .setView(view)
                     .create()
 
