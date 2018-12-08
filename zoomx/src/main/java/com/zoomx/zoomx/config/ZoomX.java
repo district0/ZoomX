@@ -3,7 +3,6 @@ package com.zoomx.zoomx.config;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import com.zoomx.zoomx.db.AppDatabase;
 import com.zoomx.zoomx.db.RequestDao;
 import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
@@ -60,16 +59,12 @@ public final class ZoomX {
         if (config.canShowOnShakeEvent() && !config.canShowMenuOnAppStart()) {
             Log.d(TAG, "Show Menu on shake executed");
             mShakeEventManager = new ShakeEventManager(config.getContext());
-            mShakeEventManager.listen(new ShakeEventManager.OnShakeEventListener() {
-                @Override
-                public void OnShakeDetected() {
-                    Log.d(TAG, "shake detected");
-                    showMenuHead();
-                }
+            mShakeEventManager.listen(() -> {
+                Log.d(TAG, "shake detected");
+                showMenuHead();
             });
         }
     }
-
 
 
     @NonNull
