@@ -13,15 +13,15 @@ import timber.log.Timber
 
 object NetworkLogManager {
 
-    fun log(builder: RequestEntity.Builder?) {
-        if (builder != null)
-            insertRequest(builder).subscribe()
+
+    fun log(builder: RequestEntity.Builder) {
+        insertRequest(builder).subscribe()
     }
 
     private fun insertRequest(builder: RequestEntity.Builder): Completable {
         return Completable
                 .fromAction { ZoomX.getRequestDao().insertRequest(builder.create()) }
-                .doOnError(Consumer<Throwable> { Timber.e(it) })
+                .doOnError { Timber.e(it) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }
