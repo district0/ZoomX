@@ -1,11 +1,15 @@
 package com.zoomx.zoomx.ui.settings
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SwitchCompat
 import android.support.v7.widget.Toolbar
 import android.widget.CompoundButton
+import android.widget.RadioGroup
 import com.zoomx.zoomx.R
+import com.zoomx.zoomx.ui.ZoomxUIOption
+import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListener {
 
@@ -19,9 +23,10 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
     }
 
     private fun initUi() {
-        mSettingsManager = SettingsManager.get(this)
+        mSettingsManager = SettingsManager[this]
         initToolBar()
         initSwitch(R.id.setting_network_tracker_switch, mSettingsManager.isNetworkTrackingEnabled!!)
+        initZoomxUiOptions()
     }
 
     private fun initSwitch(id: Int, isChecked: Boolean) {
@@ -33,7 +38,33 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
     private fun initToolBar() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setTitle(R.string.setting_screen_title)
+        supportActionBar?.setTitle(R.string.setting_screen_title)
+    }
+
+    private fun initZoomxUiOptions() {
+
+        zoomx_ui_options.setOnClickListener {
+
+            var view = layoutInflater.inflate(R.layout.zoomx_ui_options_checkboxes, null, false)
+
+            val defaultChecked = if (mSettingsManager.zoomxUIOption == ZoomxUIOption.NOTIFICATION)
+                R.id.radio_notification_option else R.id.radio_draw_over_apps_option
+
+            with(view.findViewById<RadioGroup>(R.id.zoomx_ui_options_radios)) {
+                check(defaultChecked)
+                setOnCheckedChangeListener { _, checkedId ->
+                    mSettingsManager.saveZoomxUIOption(if (checkedId == R.id.radio_notification_option)
+                        ZoomxUIOption.NOTIFICATION else ZoomxUIOption.DRAW_OVER_APPS)
+                }
+            }
+            val dialog: AlertDialog = AlertDialog
+                    .Builder(this)
+                    .setTitle("Choose how to access Zoomx")
+                    .setView(view)
+                    .create()
+
+            dialog.show()
+        }
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
