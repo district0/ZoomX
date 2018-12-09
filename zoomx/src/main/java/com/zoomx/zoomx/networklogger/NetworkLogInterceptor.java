@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
 
 import java.io.IOException;
@@ -29,10 +30,12 @@ import okio.BufferedSource;
 public class NetworkLogInterceptor implements Interceptor {
 
     private static final Charset UTF_8 = Charset.forName("utf-8");
+    private final ZoomxNotification zoomxNotification;
     private Context context;
 
     public NetworkLogInterceptor(Context context) {
         this.context = context;
+        zoomxNotification = new ZoomxNotification(context);
     }
 
     @Override
@@ -69,7 +72,8 @@ public class NetworkLogInterceptor implements Interceptor {
             requestBuilder.setResponseBody(responseBody(response));
         }
 
-        NetworkLogManager.log(requestBuilder);
+        NetworkLogManager.INSTANCE.log(requestBuilder);
+        zoomxNotification.show(requestBuilder.create());
         return response;
     }
 

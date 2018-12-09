@@ -34,12 +34,7 @@ public class MainActivity extends AppCompatActivity {
         service.getUsers(0, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .repeatWhen(new Function<Observable<?>, ObservableSource<?>>() {
-                    @Override
-                    public ObservableSource<?> apply(Observable<?> objectObservable) throws Exception {
-                        return objectObservable.delay(10, TimeUnit.SECONDS);
-                    }
-                })
+                .repeatWhen((Function<Observable<?>, ObservableSource<?>>) objectObservable -> objectObservable.delay(10, TimeUnit.SECONDS))
                 .subscribe(new Observer<List<User>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
