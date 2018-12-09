@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
@@ -23,6 +24,7 @@ class ZoomxNotification(private val context: Context) {
     private val notificationBuilder: NotificationCompat.Builder
     private val notificationManager: NotificationManagerCompat = NotificationManagerCompat.from(context)
     private val buffer = Buffer()
+    private var counter: Int = 0
 
     private class Buffer(list: MutableList<String> = mutableListOf()) : MutableList<String> by list {
         operator fun plusAssign(string: String) {
@@ -59,19 +61,20 @@ class ZoomxNotification(private val context: Context) {
         with(notificationManager) {
             val body = """
                 ${requestEntity.method}||${requestEntity.code}
-                URL: ${requestEntity.url}
+                --> ${Uri.parse(requestEntity.url).path}
             """.trimIndent()
 
             buffer += body
+            counter++
             buffer.reversed().forEachIndexed { index, s ->
                 inboxStyle.addLine(buffer[index])
                 notificationBuilder.setStyle(inboxStyle)
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                notificationBuilder.setSubText(buffer.size.toString())
+                notificationBuilder.setSubText(counter.toString())
             } else {
-                notificationBuilder.setNumber(buffer.size)
+                notificationBuilder.setNumber(counter)
             }
             notify(ZOOMX_NOTIFICATION_ID, notificationBuilder.build())
         }
@@ -93,6 +96,7 @@ class ZoomxNotification(private val context: Context) {
     }
 
     fun clear() {
+        counter = 0
         ZoomX.getRequestDao().clearRequestsData()
         buffer.clear()
         notificationManager.cancel(ZOOMX_NOTIFICATION_ID)
