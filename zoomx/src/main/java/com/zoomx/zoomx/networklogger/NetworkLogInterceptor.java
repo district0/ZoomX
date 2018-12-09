@@ -3,7 +3,9 @@ package com.zoomx.zoomx.networklogger;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.ui.ZoomxUIOption;
 import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
 
@@ -36,6 +38,12 @@ public class NetworkLogInterceptor implements Interceptor {
     public NetworkLogInterceptor(Context context) {
         this.context = context;
         zoomxNotification = new ZoomxNotification(context);
+        checkDrawOverAppsOption(context);
+    }
+
+    private void checkDrawOverAppsOption(Context context) {
+        if (SettingsManager.get(context).getZoomxUIOption() == ZoomxUIOption.DRAW_OVER_APPS)
+            ZoomX.showMenu();
     }
 
     @Override
@@ -73,7 +81,8 @@ public class NetworkLogInterceptor implements Interceptor {
         }
 
         NetworkLogManager.INSTANCE.log(requestBuilder);
-        zoomxNotification.show(requestBuilder.create());
+        if (SettingsManager.get(context).getZoomxUIOption() == ZoomxUIOption.NOTIFICATION)
+            zoomxNotification.show(requestBuilder.create());
         return response;
     }
 

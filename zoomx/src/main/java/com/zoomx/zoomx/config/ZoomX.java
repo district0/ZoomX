@@ -3,10 +3,14 @@ package com.zoomx.zoomx.config;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
+
 import com.zoomx.zoomx.db.AppDatabase;
 import com.zoomx.zoomx.db.RequestDao;
+import com.zoomx.zoomx.ui.ZoomxUIOption;
 import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
+import com.zoomx.zoomx.ui.settings.SettingActivity;
 import com.zoomx.zoomx.util.ShakeEventManager;
+
 
 /**
  * Created by Ahmed Fathallah on 12/10/2017.
@@ -36,9 +40,14 @@ public final class ZoomX {
     }
 
     private static void handleShowMenuOnStart() {
-        if (config.canShowMenuOnAppStart() && !config.canShowOnShakeEvent()) {
-            showMenuHead();
+        if (config.canShowMenuOnAppStart() && !config.canShowOnShakeEvent()
+                && config.getZoomxUIOption() != ZoomxUIOption.NOTIFICATION) {
+            showMenu();
         }
+    }
+
+    private static void showSettingsActivity() {
+        SettingActivity.start(config.getContext());
     }
 
     private static void setupDataBase() {
@@ -46,11 +55,11 @@ public final class ZoomX {
         requestDao = database.requestDao();
     }
 
-    public static void showMenuHead() {
+    public static void showMenu() {
         ZoomxMenuService.showMenuHead(config.getContext());
     }
 
-    public static void hideMenuHead() {
+    public static void hideHead() {
         ZoomxMenuService.hideMenuHead(config.getContext());
     }
 
@@ -61,7 +70,7 @@ public final class ZoomX {
             mShakeEventManager = new ShakeEventManager(config.getContext());
             mShakeEventManager.listen(() -> {
                 Log.d(TAG, "shake detected");
-                showMenuHead();
+                showMenu();
             });
         }
     }

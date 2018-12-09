@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.zoomx.example.model.User;
 import com.zoomx.example.retrofit.ApiService;
 import com.zoomx.example.retrofit.NetworkManager;
-import com.zoomx.zoomx.config.ZoomX;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -55,17 +54,5 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        ZoomX.showMenuHead();
-    }
-
-    @Override
-    protected void onStop() {
-        ZoomX.hideMenuHead();
-        super.onStop();
     }
 }

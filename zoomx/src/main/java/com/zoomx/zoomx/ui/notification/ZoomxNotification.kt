@@ -36,7 +36,6 @@ class ZoomxNotification(private val context: Context) {
 
 
     init {
-        // Create an explicit intent for an Activity in your app
         val intent = Intent(context, RequestActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

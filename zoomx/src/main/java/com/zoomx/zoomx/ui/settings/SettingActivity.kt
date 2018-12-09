@@ -1,5 +1,7 @@
 package com.zoomx.zoomx.ui.settings
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -71,6 +73,16 @@ class SettingActivity : AppCompatActivity(), CompoundButton.OnCheckedChangeListe
         val id = buttonView.id
         if (id == R.id.setting_network_tracker_switch) {
             mSettingsManager.setNetworkTrackingStatus(isChecked)
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun start(context: Context) {
+            val intent = Intent(context, SettingActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            context.startActivity(intent)
         }
     }
 }
