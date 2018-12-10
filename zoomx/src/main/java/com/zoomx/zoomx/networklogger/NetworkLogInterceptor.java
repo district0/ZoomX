@@ -80,7 +80,7 @@ public class NetworkLogInterceptor implements Interceptor {
             requestBuilder.setResponseBody(responseBody(response));
         }
 
-        NetworkLogManager.INSTANCE.log(requestBuilder);
+        NetworkLogManager.log(requestBuilder);
         if (SettingsManager.get(context).getZoomxUIOption() == ZoomxUIOption.NOTIFICATION)
             zoomxNotification.show(requestBuilder.create());
         return response;

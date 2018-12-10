@@ -11,18 +11,22 @@ import timber.log.Timber
  * Created by Ahmed Fathallah on 1/11/2018.
  */
 
-object NetworkLogManager {
+class NetworkLogManager {
 
+    companion object {
 
-    fun log(builder: RequestEntity.Builder) {
-        insertRequest(builder).subscribe()
-    }
+        @JvmStatic
+        fun log(builder: RequestEntity.Builder) {
+            insertRequest(builder).subscribe()
+        }
 
-    private fun insertRequest(builder: RequestEntity.Builder): Completable {
-        return Completable
-                .fromAction { ZoomX.getRequestDao().insertRequest(builder.create()) }
-                .doOnError { Timber.e(it) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+        private fun insertRequest(builder: RequestEntity.Builder): Completable {
+            return Completable
+                    .fromAction { ZoomX.getRequestDao().insertRequest(builder.create()) }
+                    .doOnError { Timber.e(it) }
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+        }
+
     }
 }
