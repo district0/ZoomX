@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.ZoomxUIOption;
-import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
 
 import java.io.IOException;
@@ -32,12 +31,10 @@ import okio.BufferedSource;
 public class NetworkLogInterceptor implements Interceptor {
 
     private static final Charset UTF_8 = Charset.forName("utf-8");
-    private final ZoomxNotification zoomxNotification;
     private Context context;
 
     public NetworkLogInterceptor(Context context) {
         this.context = context;
-        zoomxNotification = new ZoomxNotification(context);
         checkDrawOverAppsOption(context);
     }
 
@@ -80,9 +77,7 @@ public class NetworkLogInterceptor implements Interceptor {
             requestBuilder.setResponseBody(responseBody(response));
         }
 
-        NetworkLogManager.INSTANCE.log(requestBuilder);
-        if (SettingsManager.get(context).getZoomxUIOption() == ZoomxUIOption.NOTIFICATION)
-            zoomxNotification.show(requestBuilder.create());
+        NetworkLogManager.log(requestBuilder);
         return response;
     }
 

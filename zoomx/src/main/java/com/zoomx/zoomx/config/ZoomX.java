@@ -8,7 +8,9 @@ import com.zoomx.zoomx.db.AppDatabase;
 import com.zoomx.zoomx.db.RequestDao;
 import com.zoomx.zoomx.ui.ZoomxUIOption;
 import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
+import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 import com.zoomx.zoomx.ui.settings.SettingActivity;
+import com.zoomx.zoomx.ui.settings.SettingsManager;
 import com.zoomx.zoomx.util.ShakeEventManager;
 
 
@@ -24,6 +26,8 @@ public final class ZoomX {
     private static Config config;
     private static RequestDao requestDao;
     private static ShakeEventManager mShakeEventManager;
+    private static ZoomxNotification zoomxNotification;
+    private static SettingsManager settingsManager;
 
     public static void init(Config config) {
         ZoomX.config = config;
@@ -73,6 +77,21 @@ public final class ZoomX {
                 showMenu();
             });
         }
+    }
+
+
+    public static SettingsManager getSettingsManager() {
+        if (settingsManager == null) {
+            settingsManager = SettingsManager.get(config.getContext());
+        }
+        return settingsManager;
+    }
+
+    public static ZoomxNotification getNotification() {
+        if (zoomxNotification == null) {
+            zoomxNotification = new ZoomxNotification(config.getContext());
+        }
+        return zoomxNotification;
     }
 
 
