@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -30,10 +35,10 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     implementation project(':zoomx')
-    implementation 'android.arch.lifecycle:extensions:1.0.0'
-    compile 'com.android.support:multidex:1.0.2'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
 }

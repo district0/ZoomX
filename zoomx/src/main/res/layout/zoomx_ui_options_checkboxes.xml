@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/zoomx_ui_options_radios"
+    android:padding="10dp">
+
+    <RadioButton
+        android:id="@+id/radio_notification_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/zoomx_ui_option_notification" />
+
+    <RadioButton
+        android:id="@+id/radio_draw_over_apps_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/zoomx_ui_options_draw_over_app" />
+
+</RadioGroup>
