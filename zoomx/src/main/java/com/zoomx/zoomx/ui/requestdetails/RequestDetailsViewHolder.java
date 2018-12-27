@@ -25,22 +25,30 @@ public class RequestDetailsViewHolder extends RecyclerView.ViewHolder {
         headerLinearLayout = itemView.findViewById(R.id.header_layout);
     }
 
-    public void bind(String key, String value, int position) {
-        headerKeyTextView.setText(key);
-        headerValueTextView.setText(value);
+    public void bind(String header, int position) {
+        String headerKeyAndValue[] = header.split(":");
+        if (headerKeyAndValue.length > 1) {
+            String key = headerKeyAndValue[0];
+            String value = headerKeyAndValue[1];
 
-        if (key.equalsIgnoreCase(itemView.getContext().getString(R.string.response_headers)) |
-                key.equalsIgnoreCase(itemView.getContext().getString(R.string.request_headers))) {
-            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_200));
-            headerKeyTextView.setAllCaps(true);
-            headerKeyTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-            headerValueTextView.setVisibility(View.GONE);
-        } else if (position % 2 == 0) {
-            headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_100));
-            headerValueTextView.setVisibility(View.VISIBLE);
-        } else {
-            headerLinearLayout.setBackgroundColor(Color.WHITE);
-            headerValueTextView.setVisibility(View.VISIBLE);
+            headerKeyTextView.setText(key);
+            headerValueTextView.setText(value);
+
+            if (key.equals("Response") || key.equals("Request")) {
+                headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.black));
+//                headerKeyTextView.setAllCaps(true);
+//                headerKeyTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                headerValueTextView.setVisibility(View.GONE);
+                headerKeyTextView.append(" Headers");
+                headerKeyTextView.setAllCaps(true);
+                headerKeyTextView.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.white));
+            } else if (position % 2 == 0) {
+                headerLinearLayout.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.grey_100));
+                headerValueTextView.setVisibility(View.VISIBLE);
+            } else {
+                headerLinearLayout.setBackgroundColor(Color.WHITE);
+                headerValueTextView.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ import com.zoomx.zoomx.util.FormatUtil;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class NetworkLogInterceptor implements Interceptor {
     }
 
     @Override
-    public Response intercept(@NonNull Chain chain){
+    public Response intercept(@NonNull Chain chain) {
         try {
             RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
             Response response = null;
@@ -57,7 +58,7 @@ public class NetworkLogInterceptor implements Interceptor {
                     .setRequestHeaders(getHeaders(retrofitRequest.headers()));
 
             long startDateInMs = System.currentTimeMillis();
-                response = chain.proceed(retrofitRequest);
+            response = chain.proceed(retrofitRequest);
 
             long timeTookInMs = System.currentTimeMillis() - startDateInMs;
             requestBuilder.setStartDate(new Date(startDateInMs));
@@ -78,11 +79,11 @@ public class NetworkLogInterceptor implements Interceptor {
         }
     }
 
-    private Map<String, String> getHeaders(Headers headers) {
-        Map<String, String> headersMap = new HashMap<>();
+    private ArrayList<String> getHeaders(Headers headers) {
+        ArrayList<String> headersMap = new ArrayList<>();
         if (headers != null) {
             for (int i = 0; i < headers.size(); i++) {
-                headersMap.put(headers.name(i), headers.value(i));
+                headersMap.add(headers.name(i) + ": " + headers.value(i));
             }
         }
         return headersMap;
