@@ -1,5 +1,6 @@
 package com.zoomx.zoomx.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,21 +9,21 @@ import java.util.Map;
  */
 public class HeaderViewModel {
 
-    private Map<String, String> headersMap;
+    private ArrayList<String> headersMap;
 
     public HeaderViewModel() {
-        this.headersMap = new HashMap<>();
+        this.headersMap = new ArrayList<>();
     }
 
-    public HeaderViewModel(Map<String, String> headersMap) {
+    public HeaderViewModel(ArrayList<String> headersMap) {
         this.headersMap = headersMap;
     }
 
     public void addHeader(String name, String value) {
-        headersMap.put(name, value);
+        headersMap.add(name + ": " + value);
     }
 
-    public Map<String, String> getHeadersMap() {
+    public ArrayList<String> getHeadersMap() {
         return headersMap;
     }
 }

@@ -3,11 +3,15 @@ package com.zoomx.zoomx.networklogger;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
+import com.zoomx.zoomx.ui.ZoomxUIOption;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
+import com.zoomx.zoomx.util.FormatUtil;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +19,7 @@ import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -33,51 +38,60 @@ public class NetworkLogInterceptor implements Interceptor {
 
     public NetworkLogInterceptor(Context context) {
         this.context = context;
+        checkDrawOverAppsOption(context);
+    }
+
+    private void checkDrawOverAppsOption(Context context) {
+        if (SettingsManager.get(context).getZoomxUIOption() == ZoomxUIOption.DRAW_OVER_APPS)
+            ZoomX.showMenu();
     }
 
     @Override
-    public Response intercept(@NonNull Chain chain) throws IOException {
-        RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
-        Response response = null;
-
-        if (!SettingsManager.get(context).isNetworkTrackingEnabled()) {
-            return chain.proceed(chain.request());
-        }
-        Request retrofitRequest = chain.request();
-        RequestBody requestBody = retrofitRequest.body();
-
-        boolean hasRequestBody = requestBody != null;
-
-        requestBuilder.setMethod(retrofitRequest.method())
-                .setUrl(retrofitRequest.url().toString())
-                .setRequestBody(hasRequestBody ? requestBody.toString() : "")
-                .setRequestHeaders(getHeaders(retrofitRequest.headers()));
-
-        long startDateInMs = System.currentTimeMillis();
+    public Response intercept(@NonNull Chain chain) {
         try {
+            RequestEntity.Builder requestBuilder = new RequestEntity.Builder();
+            Response response = null;
+
+            if (!SettingsManager.get(context).isNetworkTrackingEnabled()) {
+                return chain.proceed(chain.request());
+            }
+            Request retrofitRequest = chain.request();
+            RequestBody requestBody = retrofitRequest.body();
+
+            boolean hasRequestBody = requestBody != null;
+
+            requestBuilder.setMethod(retrofitRequest.method())
+                    .setUrl(retrofitRequest.url().toString())
+                    .setRequestBody(hasRequestBody ? FormatUtil.bodyToString(requestBody) : "")
+                    .setRequestHeaders(getHeaders(retrofitRequest.headers()));
+
+            long startDateInMs = System.currentTimeMillis();
             response = chain.proceed(retrofitRequest);
+
+            long timeTookInMs = System.currentTimeMillis() - startDateInMs;
+            requestBuilder.setStartDate(new Date(startDateInMs));
+            requestBuilder.setTookTime(timeTookInMs);
+
+            if (response != null) {
+                requestBuilder.setResponseHeaders(getHeaders(response.headers()));
+                requestBuilder.setCode(response.code());
+                requestBuilder.setResponseBody(responseBody(response));
+            }
+
+            NetworkLogManager.log(requestBuilder);
+            return response;
         } catch (Exception e) {
             e.printStackTrace();
+            return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_0).message("No Internet Connection")
+                    .body(ResponseBody.create(MediaType.parse("text/plain"), "")).code(503).build();
         }
-        long timeTookInMs = System.currentTimeMillis() - startDateInMs;
-        requestBuilder.setStartDate(new Date(startDateInMs));
-        requestBuilder.setTookTime(timeTookInMs);
-
-        if (response != null) {
-            requestBuilder.setResponseHeaders(getHeaders(response.headers()));
-            requestBuilder.setCode(response.code());
-            requestBuilder.setResponseBody(responseBody(response));
-        }
-
-        NetworkLogManager.log(requestBuilder);
-        return response;
     }
 
-    private Map<String, String> getHeaders(Headers headers) {
-        Map<String, String> headersMap = new HashMap<>();
+    private ArrayList<String> getHeaders(Headers headers) {
+        ArrayList<String> headersMap = new ArrayList<>();
         if (headers != null) {
             for (int i = 0; i < headers.size(); i++) {
-                headersMap.put(headers.name(i), headers.value(i));
+                headersMap.add(headers.name(i) + ": " + headers.value(i));
             }
         }
         return headersMap;

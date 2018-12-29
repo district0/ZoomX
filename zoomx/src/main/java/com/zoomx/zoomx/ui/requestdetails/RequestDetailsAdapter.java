@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.zoomx.zoomx.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +16,14 @@ import java.util.List;
  */
 public class RequestDetailsAdapter extends RecyclerView.Adapter<RequestDetailsViewHolder> {
 
-    private List keysList, valuesList;
+    private ArrayList<String> requestHeaderList;
 
-    public RequestDetailsAdapter(List keysList, List valuesList) {
-        this.keysList = keysList;
-        this.valuesList = valuesList;
+    public RequestDetailsAdapter(ArrayList<String> requestHeaderList, ArrayList<String> responseHeadersMap) {
+        this.requestHeaderList = new ArrayList<>();
+        this.requestHeaderList.add("Request:Request");
+        this.requestHeaderList.addAll(requestHeaderList);
+        this.requestHeaderList.add("Response:Response");
+        this.requestHeaderList.addAll(responseHeadersMap);
     }
 
     @Override
@@ -32,11 +36,15 @@ public class RequestDetailsAdapter extends RecyclerView.Adapter<RequestDetailsVi
 
     @Override
     public void onBindViewHolder(RequestDetailsViewHolder holder, int position) {
-        holder.bind(keysList.get(position).toString(), valuesList.get(position).toString(), position);
+        try {
+            holder.bind(requestHeaderList.get(position), position);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return keysList.size();
+        return requestHeaderList.size();
     }
 }

@@ -98,8 +98,7 @@ public class RequestDetailsFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        RequestDetailsAdapter requestDetailsAdapter = new RequestDetailsAdapter(getHeadersKeyList(getHeaderMap(requestEntity))
-                , getHeadersValueList(getHeaderMap(requestEntity)));
+        RequestDetailsAdapter requestDetailsAdapter = new RequestDetailsAdapter(requestEntity.getRequestHeaders().getHeadersMap(), requestEntity.getResponseHeaders().getHeadersMap());
 
         recyclerView.setAdapter(requestDetailsAdapter);
         methodTextView.setText(requestEntity.getMethod());
@@ -128,35 +127,6 @@ public class RequestDetailsFragment extends Fragment {
         intent.putExtra(BODY_URL_KEY, url);
         intent.putExtra(BODY_JSON_KEY, body);
         startActivity(intent);
-    }
-
-    public Map<String, String> getHeaderMap(RequestEntity requestEntity) {
-        Map<String, String> headersMap = new HashMap<>();
-        if (requestEntity.getResponseHeaders() != null && requestEntity.getResponseHeaders().getHeadersMap() != null) {
-            headersMap.put(getString(R.string.response_headers), "");
-            for (Map.Entry<String, String> entry : requestEntity.getResponseHeaders().getHeadersMap().entrySet()) {
-                headersMap.put(entry.getKey(), entry.getValue());
-            }
-        }
-
-        if (requestEntity.getRequestHeaders() != null && requestEntity.getRequestHeaders().getHeadersMap() != null) {
-            headersMap.put(getString(R.string.request_headers), "");
-            for (Map.Entry<String, String> entry : requestEntity.getRequestHeaders().getHeadersMap().entrySet()) {
-                headersMap.put(entry.getKey(), entry.getValue());
-            }
-        }
-
-        return headersMap;
-    }
-
-    public List getHeadersKeyList(Map<String, String> map) {
-        List<String> list = new ArrayList<String>(map.keySet());
-        return list;
-    }
-
-    public List getHeadersValueList(Map<String, String> map) {
-        List<String> list = new ArrayList<String>(map.values());
-        return list;
     }
 
     @Override

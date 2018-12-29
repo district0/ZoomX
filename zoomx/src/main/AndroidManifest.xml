@@ -25,6 +25,7 @@
             android:theme="@style/ZoomXAppTheme" />
 
         <service android:name=".ui.menu.ZoomxMenuService" />
+        <service android:name=".ui.notification.ClearLogsIntentService" />
 
         <activity
             android:name=".ui.settings.SettingActivity"

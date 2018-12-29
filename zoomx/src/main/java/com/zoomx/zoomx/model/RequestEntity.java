@@ -6,6 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.zoomx.zoomx.db.converters.HeaderConverter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 
 @Entity(tableName = "requests")
 public class RequestEntity {
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private int code;
     private String method;
@@ -67,7 +68,7 @@ public class RequestEntity {
     }
 
     public String getMethod() {
-        return method != null? method : "";
+        return method != null ? method : "";
     }
 
     public void setMethod(String method) {
@@ -83,7 +84,7 @@ public class RequestEntity {
     }
 
     public String getUrl() {
-        return url != null? url:"missing";
+        return url != null ? url : "missing";
     }
 
     public void setUrl(String url) {
@@ -91,7 +92,7 @@ public class RequestEntity {
     }
 
     public String getResponseBody() {
-        return responseBody != null? responseBody : "";
+        return responseBody != null ? responseBody : "";
     }
 
     public void setResponseBody(String responseBody) {
@@ -99,7 +100,7 @@ public class RequestEntity {
     }
 
     public String getRequestBody() {
-        return requestBody != null? requestBody : "";
+        return requestBody != null ? requestBody : "";
     }
 
     public void setRequestBody(String requestBody) {
@@ -151,8 +152,8 @@ public class RequestEntity {
         private String requestBody;
         private long tookTime;
         private long responseSizeInBytes;
-        private Map<String, String> requestHeaders;
-        private Map<String, String> responseHeaders;
+        private ArrayList<String> requestHeaders;
+        private ArrayList<String> responseHeaders;
 
         public Builder setCode(int code) {
             this.code = code;
@@ -194,12 +195,12 @@ public class RequestEntity {
             return this;
         }
 
-        public Builder setRequestHeaders(Map<String, String> requestHeaders) {
+        public Builder setRequestHeaders(ArrayList<String> requestHeaders) {
             this.requestHeaders = requestHeaders;
             return this;
         }
 
-        public Builder setResponseHeaders(Map<String, String> responseHeaders) {
+        public Builder setResponseHeaders(ArrayList<String> responseHeaders) {
             this.responseHeaders = responseHeaders;
             return this;
         }
