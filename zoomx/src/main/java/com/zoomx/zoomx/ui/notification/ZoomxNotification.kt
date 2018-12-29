@@ -66,7 +66,7 @@ class ZoomxNotification(private val context: Context) {
 
             buffer += body
             counter++
-            buffer.reversed().forEachIndexed { index, s ->
+            buffer.reversed().forEachIndexed { index, _ ->
                 inboxStyle.addLine(buffer[index])
                 notificationBuilder.setStyle(inboxStyle)
             }
