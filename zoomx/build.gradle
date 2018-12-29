@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.district0'
+group='com.github.district0'
 android {
     compileSdkVersion 26
 
@@ -53,7 +53,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.pddstudio:highlightjs-android:1.5.0'
-
     implementation 'com.jakewharton.timber:timber:4.6.0'
 }
 repositories {
