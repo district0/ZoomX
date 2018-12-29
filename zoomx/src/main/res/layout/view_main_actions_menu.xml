@@ -21,7 +21,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
-            android:src="@drawable/ic_feature_collapse"
+            android:src="@drawable/ic_cancel"
             android:visibility="visible"
             tools:visibility="visible" />
 
@@ -34,7 +34,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
-            android:src="@drawable/ic_feature_settings"
+            android:src="@drawable/ic_settings"
             android:visibility="visible"
             tools:visibility="visible" />
 
@@ -61,7 +61,7 @@
             android:focusable="true"
             android:padding="10dp"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_feature_info"
+            app:srcCompat="@drawable/ic_info"
             tools:visibility="visible" />
     </LinearLayout>
 

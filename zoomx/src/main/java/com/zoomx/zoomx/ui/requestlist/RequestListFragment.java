@@ -13,7 +13,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.view.*;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.requestdetails.RequestDetailsActivity;
@@ -30,6 +37,7 @@ public class RequestListFragment extends Fragment implements SearchView.OnQueryT
     private RequestAdapter requestAdapter;
     private RequestListViewModel viewModel;
     private SearchView searchView;
+    private Toolbar toolbar;
 
     @Nullable
     @Override
@@ -87,7 +95,7 @@ public class RequestListFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_delete_requests) {
-            viewModel.clearRequestFromDB().subscribe();
+            viewModel.clearRequestFromDB().execute();
             return true;
         }
         return super.onOptionsItemSelected(item);

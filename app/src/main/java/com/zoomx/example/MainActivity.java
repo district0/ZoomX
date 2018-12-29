@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.zoomx.example.model.User;
 import com.zoomx.example.retrofit.ApiService;
 import com.zoomx.example.retrofit.NetworkManager;
+import com.zoomx.zoomx.config.ZoomX;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         service.getUsers(0, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .repeatWhen((Function<Observable<?>, ObservableSource<?>>) objectObservable -> objectObservable.delay(10, TimeUnit.SECONDS))
+                .repeatWhen(new Function<Observable<?>, ObservableSource<?>>() {
+                    @Override
+                    public ObservableSource<?> apply(Observable<?> objectObservable) throws Exception {
+                        return objectObservable.delay(10, TimeUnit.SECONDS);
+                    }
+                })
                 .subscribe(new Observer<List<User>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -54,5 +60,17 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ZoomX.showMenuHead();
+    }
+
+    @Override
+    protected void onStop() {
+        ZoomX.hideMenuHead();
+        super.onStop();
     }
 }

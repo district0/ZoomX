@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -13,8 +12,6 @@ import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-
-import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 
 /**
  * Created by Ahmed Fathallah on 12/14/2017.
@@ -51,7 +48,6 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
     public void onCreate() {
         super.onCreate();
         menuHeadLayout = new MainActionMenu(this, this);
-        ZoomxNotification.createNotificationChannel(this);
         menuCloseView = new MenuCloseView(this);
         menuParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -119,7 +115,7 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return new LocalBinder();
+        return null;
     }
 
     @Override
@@ -147,17 +143,4 @@ public class ZoomxMenuService extends Service implements MainActionMenu.ActionMe
         params.y = y;
         return params;
     }
-
-    /**
-     * Class used for the client Binder.  Because we know this service always
-     * runs in the same process as its clients, we don't need to deal with IPC.
-     */
-    public class LocalBinder extends Binder {
-        ZoomxMenuService getService() {
-            // Return this instance of LocalService so clients can call public methods
-            return ZoomxMenuService.this;
-        }
-    }
-
 }
-

@@ -2,14 +2,12 @@ package com.zoomx.zoomx.ui.requestlist;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
+import android.os.AsyncTask;
+
 import com.zoomx.zoomx.config.ZoomX;
 import com.zoomx.zoomx.model.RequestEntity;
-import io.reactivex.Completable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by Ahmed Fathallah on 12/11/2017.
@@ -27,10 +25,14 @@ public class RequestListViewModel extends ViewModel {
         return mRequests;
     }
 
-    public Completable clearRequestFromDB() {
-        return Completable
-                .fromCallable(ZoomX.getRequestDao()::clearRequestsData)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
+    public DbAsyncTask clearRequestFromDB() {
+        return new DbAsyncTask();
+    }
+
+    public static class DbAsyncTask extends AsyncTask<Void, Void, Integer> {
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return ZoomX.getRequestDao().clearRequestsData();
+        }
     }
 }

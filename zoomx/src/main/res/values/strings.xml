@@ -36,12 +36,4 @@
     <string name="info_settings_section_title">Settings</string>
     <string name="info_clear_app_data">Clear app data</string>
     <string name="info_uninstall">Uninstall</string>
-    <string name="zoomx_ui_options_hint">Choose the way you want to access Network logs</string>
-    <string name="zoomx_ui_options_title">Zoomx UI</string>
-    <string name="zoomx_ui_option_notification">Notification</string>
-    <string name="zoomx_ui_options_draw_over_app">Draw over app</string>
-    <string name="zoomx_ui_chooser">Choose how to access Zoomx</string>
-    <string name="channel_name">zoomx_notification_channel</string>
-    <string name="channel_description">zoomx notification</string>
-    <string name="clear_logs">Clear</string>
 </resources>

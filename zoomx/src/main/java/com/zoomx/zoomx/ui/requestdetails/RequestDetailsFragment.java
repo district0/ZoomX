@@ -21,9 +21,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zoomx.zoomx.BuildConfig;
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.model.RequestEntity;
 import com.zoomx.zoomx.ui.requestlist.RequestListFragment;
@@ -202,7 +204,7 @@ public class RequestDetailsFragment extends Fragment {
         @Override
         protected void onPostExecute(File file) {
             if (file != null) {
-                Uri sharedFileUri = FileProvider.getUriForFile(getActivity(), "com.zoomx.fileprovider", file);
+                Uri sharedFileUri = FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID, file);
                 Intent share = ShareCompat.IntentBuilder.from(getActivity())
                         .setType(TEXT_DATA_TYPE)
                         .setStream(sharedFileUri)

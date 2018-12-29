@@ -149,7 +149,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_request_details_arrow" />
+                app:srcCompat="@drawable/ic_arrow" />
 
         </RelativeLayout>
 
@@ -179,7 +179,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_request_details_arrow" />
+                app:srcCompat="@drawable/ic_arrow" />
 
         </RelativeLayout>
 
