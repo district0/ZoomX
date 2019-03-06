@@ -70,9 +70,10 @@ For example:
   - Display request details in a pretty format.
   
   # Upcoming Features 
-  - crashes report. 
+  - Group requests per page. 
   - Memory leaks report per page and whole app. 
   - Control internet speed.
-  - Group requests per page. 
   - Shake to change working environment. 
   - Badge title (To indicate user to on which environment you are connected production, staging,...).
+  - Crashes report. 
+
