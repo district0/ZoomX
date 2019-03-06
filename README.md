@@ -68,3 +68,11 @@ For example:
   - Search within requests.  
   - Copy any response/requests and share it via any app ex. (email). 
   - Display request details in a pretty format.
+  
+  # Upcoming Features 
+  - crashes report. 
+  - Memory leaks report per page and whole app. 
+  - Control internet speed.
+  - Group requests per page. 
+  - Shake to change working environment. 
+  - Badge title (To indicate user to on which environment you are connected production, staging,...).
