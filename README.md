@@ -24,7 +24,7 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 
 ```gradle
 dependencies {
-	        compile 'com.github.district0:ZoomX:0.7'
+	        compile 'com.github.district0:ZoomX:1.0.4'
 }
 ```
   
