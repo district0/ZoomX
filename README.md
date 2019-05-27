@@ -2,7 +2,7 @@
 
 Zoomx is a in-app debugging tool to view and log all netwrok services history in a suitable format. 
 
-<img src="https://j.gifs.com/ANmr79.gif" width="40" height="40" />
+<img src="https://j.gifs.com/ANmr79.gif" width="500" height="500" />
 
 # Usage
 
