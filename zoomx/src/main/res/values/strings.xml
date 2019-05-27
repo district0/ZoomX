@@ -20,6 +20,7 @@
     <string name="json_viewer_screen_title">JSON Viewer</string>
     <string name="request_screen_title">Request</string>
     <string name="setting_screen_title">Settings</string>
+    <string name="screen_shot_title">Screenshot</string>
     <string name="info_screen_title">App Info</string>
 
     <string name="info_app_section_title">Application info</string>
