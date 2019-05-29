@@ -2,7 +2,7 @@
 
 Zoomx is a in-app debugging tool to view and log all netwrok services history in a suitable format. 
 
-[![Webp.net-gifmaker.gif](https://s17.postimg.org/8gz1mfrin/Webp.net-gifmaker.gif)](https://postimg.org/image/cq3rolurv/)
+<img src="https://j.gifs.com/ANmr79.gif" width="500" height="500" />
 
 # Usage
 
@@ -24,7 +24,7 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 
 ```gradle
 dependencies {
-	        compile 'com.github.district0:ZoomX:0.7'
+	        implementation 'com.github.district0:ZoomX:1.0.4'
 }
 ```
   
@@ -68,3 +68,12 @@ For example:
   - Search within requests.  
   - Copy any response/requests and share it via any app ex. (email). 
   - Display request details in a pretty format.
+  
+  # Upcoming Features 
+  - Group requests per page. 
+  - Memory leaks report per page and whole app. 
+  - Control internet speed.
+  - Shake to change working environment. 
+  - Badge title (To indicate user to on which environment you are connected production, staging,...).
+  - Crashes report. 
+

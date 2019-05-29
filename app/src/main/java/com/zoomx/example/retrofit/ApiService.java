@@ -21,4 +21,6 @@ public interface ApiService {
     public io.reactivex.Observable<List<User>> getUsers(
             @Query("per_page") int per_page,
             @Query("page") int page);
+
+
 }
