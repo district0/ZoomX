@@ -31,12 +31,12 @@ import okio.BufferedSource;
  * Created by Ahmed Fathallah on 11/19/2017.
  */
 
-public class NetworkLogInterceptor implements Interceptor {
+public class ZoomXLoggerInterceptor implements Interceptor {
 
     private static final Charset UTF_8 = Charset.forName("utf-8");
     private Context context;
 
-    public NetworkLogInterceptor(Context context) {
+    public ZoomXLoggerInterceptor(Context context) {
         this.context = context;
         checkDrawOverAppsOption(context);
     }
