@@ -39,7 +39,7 @@ Just add Zoomx NetworkLogInterceptor:
 ```java	  
 	  OkHttpClient.Builder httpClient = new OkHttpClient
                 .Builder()
-                .addInterceptor(new NetworkLogInterceptor(this.context));
+                .addInterceptor(new ZoomXLoggerInterceptor(this.context));
 ```
 
 # Volley or any request method 
@@ -69,11 +69,12 @@ For example:
   - Copy any response/requests and share it via any app ex. (email). 
   - Display request details in a pretty format.
   
-  # Upcoming Features 
+  # Upcoming Features
+  - Take screenshot
   - Group requests per page. 
   - Memory leaks report per page and whole app. 
   - Control internet speed.
   - Shake to change working environment. 
   - Badge title (To indicate user to on which environment you are connected production, staging,...).
-  - Crashes report. 
+  - Crashes report.
 
