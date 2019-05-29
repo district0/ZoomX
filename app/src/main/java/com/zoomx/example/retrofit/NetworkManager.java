@@ -1,7 +1,7 @@
 package com.zoomx.example.retrofit;
 
 import android.content.Context;
-import com.zoomx.zoomx.networklogger.NetworkLogInterceptor;
+import com.zoomx.zoomx.networklogger.ZoomXLoggerInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -25,7 +25,7 @@ public class NetworkManager {
     private void initRetrofit() {
         OkHttpClient.Builder httpClient = new OkHttpClient
                 .Builder()
-                .addInterceptor(new NetworkLogInterceptor(this.context));
+                .addInterceptor(new ZoomXLoggerInterceptor(this.context));
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
