@@ -24,7 +24,7 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 
 ```gradle
 dependencies {
-	        implementation 'com.github.district0:ZoomX:1.0.4'
+	        implementation 'com.github.district0:ZoomX:1.0.6'
 }
 ```
   
@@ -65,7 +65,7 @@ For example:
 # Features 
   - Display list of requests in real time sorted by date. 
   - Send logged request/response by email.   
-  - Search within requests.  
+  - Search within requests url. 
   - Copy any response/requests and share it via any app ex. (email). 
   - Display request details in a pretty format.
   
