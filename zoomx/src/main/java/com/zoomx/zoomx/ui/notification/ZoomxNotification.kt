@@ -50,6 +50,7 @@ class ZoomxNotification(private val context: Context) {
             setContentIntent(pendingIntent)
             addAction(getClearAction())
             addAction(getSettingsAction())
+            addAction(getTakeScreenShotAction())
             setAutoCancel(false)
         }
     }
@@ -94,7 +95,12 @@ class ZoomxNotification(private val context: Context) {
         val intent = PendingIntent.getActivity(context, 0, settingsAction, 0)
         return NotificationCompat.Action(R.drawable.ic_settings_black_24dp, clearTitle, intent)
     }
-
+    private fun getTakeScreenShotAction(): NotificationCompat.Action {
+        val clearTitle = context.getString(R.string.screen_shot_title)
+        val screenshotAction = Intent(context, ScreenShotActivity::class.java)
+        val intent = PendingIntent.getActivity(context, 0, screenshotAction, 0)
+        return NotificationCompat.Action(android.R.drawable.sym_def_app_icon, clearTitle, intent)
+    }
     fun clear() {
         counter = 0
         ZoomX.getRequestDao().clearRequestsData()
