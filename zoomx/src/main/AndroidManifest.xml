@@ -3,6 +3,7 @@
     package="com.zoomx.zoomx">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application>
         <activity
@@ -46,6 +47,11 @@
             android:name=".ui.info.InfoActivity"
             android:launchMode="singleTask"
             android:theme="@style/ZoomXAppTheme" />
+        <activity android:name="com.zoomx.zoomx.ui.notification.ScreenShotActivity"
+            android:theme="@style/no_display_activity"/>
+        <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".ui.notification.ScreenshotViewerActivity"/>
     </application>
 
 </manifest>

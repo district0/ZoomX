@@ -6,4 +6,8 @@
     <files-path
         name="files"
         path="/" />
+    <external-path name="my_images" path="Android/data/com.zoomx.example/files/screenshots" />
+    <external-path
+        name="images"
+        path="/storage/emulated/0/screenshots" />
 </paths>

@@ -44,4 +44,5 @@
     <string name="channel_name">zoomx_notification_channel</string>
     <string name="channel_description">zoomx notification</string>
     <string name="clear_logs">Clear</string>
+    <string name="screen_shot_title">Screenshot</string>
 </resources>

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.zoomx.zoomx.R;
 import com.zoomx.zoomx.ui.info.InfoActivity;
+import com.zoomx.zoomx.ui.notification.ScreenShotActivity;
 import com.zoomx.zoomx.ui.requestlist.RequestActivity;
 import com.zoomx.zoomx.ui.settings.SettingActivity;
 
@@ -47,6 +48,7 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         ImageView settingsButton = view.findViewById(R.id.menu_settings_fab);
         ImageView featuresButton = view.findViewById(R.id.menu_features_fab);
         ImageView infoButton = view.findViewById(R.id.menu_info_fab);
+        ImageView screenShotButton = view.findViewById(R.id.screen_shot_fab);
         expandedView = view.findViewById(R.id.menu_expanded_view);
 
         menuButton.setOnClickListener(this);
@@ -54,7 +56,7 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
         settingsButton.setOnClickListener(this);
         featuresButton.setOnClickListener(this);
         infoButton.setOnClickListener(this);
-
+        screenShotButton.setOnClickListener(this);
         ViewConfiguration mViewConfiguration = ViewConfiguration.get(getContext());
         mTouchSlop = mViewConfiguration.getScaledTouchSlop();
     }
@@ -78,6 +80,11 @@ public class MainActionMenu extends FrameLayout implements View.OnClickListener 
             Intent intent = new Intent(getContext(), InfoActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
+        }else if (id == R.id.screen_shot_fab){
+            Intent intent = new Intent(getContext(), ScreenShotActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+            collapse();
         }
     }
 
