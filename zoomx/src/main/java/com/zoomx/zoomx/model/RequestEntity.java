@@ -139,6 +139,11 @@ public class RequestEntity {
         this.responseHeaders = responseHeaders;
     }
 
+    @Override
+    public String toString() {
+        return id + " " + code + " " + method + " "
+                + startDate + " " + url + " " + requestBody + " " + responseBody + " " + tookTime;
+    }
     //endregion
 
     //region builder
