@@ -68,12 +68,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@android:color/holo_blue_light"
+            android:background="@android:color/holo_purple"
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_screenshot_24dp"
+            app:srcCompat="@drawable/ic_screenshot"
             tools:visibility="visible" />
     </LinearLayout>
 
