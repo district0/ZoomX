@@ -11,6 +11,7 @@ import com.zoomx.zoomx.ui.menu.ZoomxMenuService;
 import com.zoomx.zoomx.ui.notification.ZoomxNotification;
 import com.zoomx.zoomx.ui.settings.SettingActivity;
 import com.zoomx.zoomx.ui.settings.SettingsManager;
+import com.zoomx.zoomx.util.ServiceUtils;
 import com.zoomx.zoomx.util.ShakeEventManager;
 
 
@@ -60,7 +61,9 @@ public final class ZoomX {
     }
 
     public static void showMenu() {
-        ZoomxMenuService.showMenuHead(config.getContext());
+        if (!ServiceUtils.isMyServiceRunning(ZoomxMenuService.class, config.getContext())) {
+            ZoomxMenuService.showMenuHead(config.getContext());
+        }
     }
 
     public static void hideHead() {
