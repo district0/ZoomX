@@ -24,7 +24,7 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 
 ```gradle
 dependencies {
-	        implementation 'com.github.district0:ZoomX:1.0.6'
+	        implementation 'com.github.district0:ZoomX:1.0.7'
 }
 ```
   
@@ -32,10 +32,17 @@ Step 3. Initiate ZoomX service
 ```java
         ZoomX.init(new Config.Builder(this).build());
 ```
-Step 4. Log your network requests 
+
+Step 4. Start/Stop ZoomX service. You can call it in your app activity cycles like (OnResume/OnPause)
+```java
+        ZoomX.showMenu();
+        ZoomX.hideHead();
+```
+
+Step 5. Log your network requests
         
 # Retrofit
-Just add Zoomx NetworkLogInterceptor:
+Just add Zoomx ZoomXLoggerInterceptor:
 ```java	  
 	  OkHttpClient.Builder httpClient = new OkHttpClient
                 .Builder()
@@ -59,7 +66,7 @@ For example:
                 .setRequestHeaders("HEADERS")
 		.setResponseBody(response);
 
-        NetworkLogManager.log(requestBuilder);
+        ZoomXLogManager.log(requestBuilder);
 ```
 
 # Features 
@@ -68,10 +75,10 @@ For example:
   - Search within requests url. 
   - Copy any response/requests and share it via any app ex. (email). 
   - Display request details in a pretty format.
+  - Take screenshot
   
   # Upcoming Features
-  - Take screenshot
-  - Group requests per page. 
+  - Group requests per page.
   - Memory leaks report per page and whole app. 
   - Control internet speed.
   - Shake to change working environment. 
