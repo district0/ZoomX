@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -78,7 +76,7 @@ public class ZoomXLoggerInterceptor implements Interceptor {
                 requestBuilder.setResponseBody(responseBody(response));
             }
 
-            NetworkLogManager.log(requestBuilder);
+            ZoomXLogManager.log(requestBuilder);
             return response;
         } catch (Exception e) {
             e.printStackTrace();

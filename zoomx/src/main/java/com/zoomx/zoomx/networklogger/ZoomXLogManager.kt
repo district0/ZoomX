@@ -12,7 +12,7 @@ import timber.log.Timber
  * Created by Ahmed Fathallah on 1/11/2018.
  */
 
-class NetworkLogManager {
+class ZoomXLogManager {
 
     companion object {
 
