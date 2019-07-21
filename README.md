@@ -25,7 +25,6 @@ Step 2. Add the dependency [ make sure that you are on the latest release number
 ```gradle
 dependencies {
 	        implementation 'com.github.district0:ZoomX:1.0.8'
-}
 ```
   
 Step 3. Initiate ZoomX service
