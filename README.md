@@ -4,6 +4,9 @@ Zoomx is a in-app debugging tool to view and log all netwrok services history in
 
 <img src="https://j.gifs.com/ANmr79.gif" width="500" height="500" />
 
+YouTube Video
+[linkname](https://https://youtu.be/kri9Eyrso5M)
+
 # Usage
 
 Gradle:
