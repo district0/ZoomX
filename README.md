@@ -43,7 +43,7 @@ Step 4. Start/Stop ZoomX service. You can call it in your app activity cycles li
 Step 5. Log your network requests
         
 # Retrofit
-Just add Zoomx ZoomXLoggerInterceptor:
+Just add ZoomXLoggerInterceptor:
 ```java	  
 	  OkHttpClient.Builder httpClient = new OkHttpClient
                 .Builder()
