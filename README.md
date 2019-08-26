@@ -1,6 +1,6 @@
 # ZoomX
 
-Zoomx is a in-app debugging tool to view and log all network services history in a suitable format. 
+Zoomx is android logging interceptor tool to view and log all network services history in a suitable format. 
 
 <img src="https://j.gifs.com/ANmr79.gif" width="500" height="500" />
 
